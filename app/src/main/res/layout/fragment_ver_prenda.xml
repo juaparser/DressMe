@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.verPrenda.VerPrendaFragment">
+
+        <ImageView
+            android:id="@+id/image_ropa"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/foto_ropa"
+            android:src="@drawable/ic_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_ropa_name"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_ropa"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="30sp"
+            tools:text="Nombre prenda"/>
+
+        <TextView
+            android:id="@+id/text_ropa_uses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toEndOf="@id/text_ropa_name"
+            app:layout_constraintTop_toBottomOf="@+id/image_ropa"
+            tools:text="16"
+            android:textColor="@color/gray"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/text_ropa_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_ropa_name"
+            tools:text="Categoria"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="20sp" />
+
+        <View
+            style="@style/Divider.Horizontal"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_ropa_categoria"/>
+
+        <LinearLayout
+            android:id="@+id/layout_marca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/layout_talla"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_ropa_categoria">
+
+            <TextView
+                android:id="@+id/text_ropa_sampleMarca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ropa_marca"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/text_ropa_marca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Zara"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_talla"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/layout_marca"
+            app:layout_constraintTop_toBottomOf="@id/text_ropa_categoria">
+
+            <TextView
+                android:id="@+id/text_ropa_sampleTalla"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/prenda_talla"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_ropa_sampleMarca"
+                app:layout_constraintTop_toBottomOf="@id/text_ropa_categoria" />
+
+
+            <TextView
+                android:id="@+id/text_ropa_talla"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/text_ropa_marca"
+                app:layout_constraintTop_toBottomOf="@id/text_ropa_sampleTalla"
+                tools:text="S"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <View
+            style="@style/Divider.Horizontal"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_marca"/>
+
+
+        <TextView
+            android:id="@+id/text_ropa_colores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_marca"
+            android:text="@string/ropa_view_colores"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="18sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/layout_colores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:textAlignment="center"
+            android:backgroundTint="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/text_ropa_colores"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"/>
+
+        <View
+            style="@style/Divider.Horizontal"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_colores"/>
+
+        <TextView
+            android:id="@+id/text_ropa_tiempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/ropa_view_tiempo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_colores"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="18sp" />
+
+        <ListView
+            android:id="@+id/layout_tiempo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            app:layout_constraintTop_toBottomOf="@id/text_ropa_tiempo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal">
+
+        </ListView>
+
+        <View
+            style="@style/Divider.Horizontal"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_tiempo"/>
+
+
+        <LinearLayout
+            android:id="@+id/layout_fecha_compra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/layout_fecha_creacion"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_tiempo">
+
+            <TextView
+                android:id="@+id/text_ropa_sampleFechaCompra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ropa_fecha_compra"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/text_ropa_fechaCompra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="05/12/2020"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_fecha_creacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/layout_fecha_compra"
+            app:layout_constraintTop_toBottomOf="@id/layout_tiempo">
+
+            <TextView
+                android:id="@+id/text_ropa_sampleFechaCreacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ropa_view_fecha_creacion"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/text_ropa_fechaCreacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="05/12/2020"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

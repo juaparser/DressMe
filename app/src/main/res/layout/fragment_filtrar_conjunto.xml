@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.filtrosConjunto.FiltrarConjuntoFragment">
+
+    <!-- CREACION OUTFIT ALEATORIO -->
+
+    <!-- CAJA COLORES-> LLEVA A UNA PESTAÑA DE SELECCION DE VARIOS COLORES, SE MUESTRAN DEBAJO? -->
+    <!-- CAJA TIEMPO-> DESPLEGABLE CON EL TIEMPO A ELEGIR -->
+
+    <!-- TIPOS DE PRENDA -> LLEVA A UNA PESTAÑA DE SELECCION DE LAS PRENDAS QUE SE DESEEN -->
+
+    <!-- BOTON GENERAR OUTFIT, LLEVA A UNA PESTAÑA CON LAS PRENDAS ELEGIDAS Y LA CONFIRMACIÓN del mismo -->
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:textColor="@color/themeColor"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/title_filter_conjunto"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_colores"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@id/txt_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        style="?attr/materialButtonOutlinedStyle"
+        app:icon="@drawable/ic_right_arrow"
+        app:iconTint="@color/teal_200"
+        app:strokeWidth="3dp"
+        app:iconGravity="end"
+        app:strokeColor="@color/teal_200"
+        android:textColor="@color/themeColor"
+        android:text="Colores "/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/layout_colores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:textAlignment="center"
+        android:backgroundTint="@color/gray"
+        android:visibility="invisible"
+        android:background="#D39F9696"
+        app:layout_constraintTop_toBottomOf="@id/btn_colores"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_tiempo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_colores"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        app:strokeColor="@color/teal_200"
+        app:strokeWidth="3dp"
+        app:icon="@drawable/ic_right_arrow"
+        app:iconTint="@color/teal_200"
+        app:iconGravity="end"
+        style="?attr/materialButtonOutlinedStyle"
+        android:textColor="@color/themeColor"
+        android:text="Tiempo "/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/layout_tiempo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:textAlignment="center"
+        android:backgroundTint="@color/gray"
+        android:visibility="invisible"
+        android:background="#D39F9696"
+        app:layout_constraintTop_toBottomOf="@id/btn_tiempo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_prenda"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_tiempo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        app:strokeColor="@color/teal_200"
+        app:strokeWidth="3dp"
+        app:icon="@drawable/ic_right_arrow"
+        app:iconTint="@color/teal_200"
+        app:iconGravity="end"
+        style="?attr/materialButtonOutlinedStyle"
+        android:textColor="@color/themeColor"
+        android:text="Prendas "/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/layout_prenda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:textAlignment="center"
+        android:backgroundTint="@color/gray"
+        android:visibility="invisible"
+        android:background="#D39F9696"
+        app:layout_constraintTop_toBottomOf="@id/btn_prenda"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_generar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_prenda"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        app:strokeColor="#66BB6A"
+        app:strokeWidth="3dp"
+        style="?attr/materialButtonOutlinedStyle"
+        android:textColor="@color/themeColor"
+        android:text="Generar conjunto "/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

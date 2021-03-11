@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">DressMe</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Inicio</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_armario">Armario</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="subir_imagen">Subir imagen</string>
+    <string name="foto_ropa">Foto ropa</string>
+    <string name="ropa_edit_nombre">Nombre*</string>
+    <string name="ropa_categoria">Categoría*</string>
+    <string name="ropa_colores">Colores*</string>
+    <string name="ropa_tiempo">Tiempo</string>
+    <string name="ropa_marca">Marca</string>
+    <string name="talla">Talla</string>
+    <string name="subir_prenda">Subir prenda</string>
+    <string name="menu_subirRopa">Subir prenda</string>
+    <string name="prenda_talla">Talla</string>
+    <string name="ropa_view_colores">Colores:</string>
+    <string name="ropa_view_tiempo">Tiempo:</string>
+    <string name="ropa_fecha_compra">Comprado el:</string>
+    <string name="ropa_view_fecha_creacion">Creado el:</string>
+    <string name="menu_verPrenda">Ver prenda</string>
+
+    <string name="edit_prenda">Actualizar </string>
+    <string name="menu_misConjuntos">Mis conjuntos</string>
+    <string name="subir_conjunto">Subir conjunto</string>
+    <string name="menu_subirConjunto">Subir conjunto</string>
+    <string name="label_search">Buscar</string>
+    <string name="search_hint">Buscar…</string>
+    <string name="buscar_accesorio">Buscar accesorio…</string>
+    <string name="buscar_superior">Buscar prenda superior…</string>
+    <string name="buscar_prenda_inferior">Buscar prenda inferior…</string>
+    <string name="buscar_zapatos">Buscar zapatos…</string>
+    <string name="menu_verConjunto">Ver conjunto</string>
+    <string name="welcome_message">¡Bienvenid@ a DressMe!
+        Comienza a crear tus conjuntos.</string>
+    <string name="title_filter_conjunto">Generación de un conjunto aleatorio</string>
+    <string name="confirmar_colores">Confirmar colores</string>
+    <string name="confirmar_categorias">Confirmar colores</string>
+    <string name="confirmar_tiempo">Confirmar colores</string>
+    <string name="title_random">El conjunto nuevo es…</string>
+    <string name="txt_inicio_generar_conjunto">Generar conjunto aleatorio</string>
+    <string name="txt_inicio_generar">Generar</string>
+
+</resources>

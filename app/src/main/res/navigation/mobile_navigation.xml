@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.juaparser.dressme.ui.inicio.InicioFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_inicio" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_filtrarConjunto"
+            app:destination="@id/nav_filtrarConjunto" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_generarConjunto"
+        android:name="com.juaparser.dressme.ui.randomConjunto.RandomConjuntoFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_random_conjunto" >
+
+        <action
+            android:id="@+id/action_nav_generarConjunto_to_nav_subirConjunto"
+            app:destination="@id/nav_subirConjunto" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_filtrarConjunto"
+        android:name="com.juaparser.dressme.ui.filtrosConjunto.FiltrarConjuntoFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_filtrar_conjunto" >
+        <action
+            android:id="@+id/action_nav_filtrarConjunto_to_nav_checkboxFragment"
+            app:destination="@id/nav_checkboxFragment" />
+        <action
+            android:id="@+id/action_nav_filtrarConjunto_to_nav_generarConjunto"
+            app:destination="@id/nav_generarConjunto" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_checkboxFragment"
+        android:name="com.juaparser.dressme.ui.filtrosConjunto.CheckboxFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_checkbox" />
+
+    <fragment
+        android:id="@+id/nav_armario"
+        android:name="com.juaparser.dressme.ui.armario.ArmarioFragment"
+        android:label="@string/menu_armario"
+        tools:layout="@layout/fragment_armario" >
+        <action
+            android:id="@+id/action_nav_armario_to_nav_subirRopa"
+            app:destination="@id/nav_subirRopa"
+            app:popUpTo="@id/nav_armario" />
+        <action
+            android:id="@+id/action_nav_armario_to_nav_verPrenda"
+            app:destination="@id/nav_verPrenda"
+            app:popUpTo="@id/nav_armario" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_subirRopa"
+        android:name="com.juaparser.dressme.ui.subirRopa.SubirRopaFragment"
+        android:label="@string/menu_subirRopa"
+        tools:layout="@layout/fragment_subir_ropa" />
+
+    <fragment
+        android:id="@+id/nav_verPrenda"
+        android:name="com.juaparser.dressme.ui.verPrenda.VerPrendaFragment"
+        android:label="@string/menu_verPrenda"
+        tools:layout="@layout/fragment_ver_prenda" />
+
+    <fragment
+        android:id="@+id/nav_misConjuntos"
+        android:name="com.juaparser.dressme.ui.misConjuntos.MisConjuntosFragment"
+        android:label="@string/menu_misConjuntos"
+        tools:layout="@layout/fragment_mis_conjuntos" >
+        <action
+            android:id="@+id/action_nav_misConjuntos_to_nav_subirConjunto"
+            app:destination="@id/nav_subirConjunto" />
+        <action
+            android:id="@+id/action_nav_misConjuntos_to_nav_verConjunto"
+            app:destination="@id/nav_verConjunto" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_subirConjunto"
+        android:name="com.juaparser.dressme.ui.subirConjunto.SubirConjuntoFragment"
+        android:label="@string/menu_subirConjunto"
+        tools:layout="@layout/fragment_subir_conjunto" />
+
+    <fragment
+        android:id="@+id/nav_verConjunto"
+        android:name="com.juaparser.dressme.ui.verConjunto.VerConjuntoFragment"
+        android:label="@string/menu_verConjunto"
+        tools:layout="@layout/fragment_ver_conjunto" />
+</navigation>
