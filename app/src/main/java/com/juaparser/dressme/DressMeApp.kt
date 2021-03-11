@@ -9,6 +9,7 @@ import com.juaparser.dressme.database.Prenda
 class DressMeApp: Application() {
 
     companion object {
+
         lateinit var database: DressMeDatabase
         lateinit var listCheckboxColores: MutableList<String>
         lateinit var listCheckboxPrendas: MutableList<String>
