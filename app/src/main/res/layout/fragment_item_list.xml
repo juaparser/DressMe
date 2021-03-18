@@ -7,25 +7,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/menu"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_margin="8dp"
-        app:boxCornerRadiusBottomEnd="32dp"
-        app:boxCornerRadiusTopEnd="32dp"
-        app:boxCornerRadiusBottomStart="32dp"
-        app:boxCornerRadiusTopStart="32dp"
-        app:boxStrokeColor="@drawable/menu_style"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        android:weightSum="10">
 
-        <AutoCompleteTextView
-            android:id="@+id/textField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/menu"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            app:boxCornerRadiusBottomEnd="32dp"
+            app:boxCornerRadiusTopEnd="32dp"
+            app:boxCornerRadiusBottomStart="32dp"
+            app:boxCornerRadiusTopStart="32dp"
+            app:boxStrokeColor="@drawable/menu_style"
+            android:layout_weight="9"
+            android:layout_height="wrap_content">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <AutoCompleteTextView
+                android:id="@+id/textField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nova_round"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/cancelFilter"
+            style="@style/Widget.AppCompat.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:background="#00FFFFFF"
+            android:layout_weight="1"
+            android:src="@drawable/ic_close"/>
+
+    </LinearLayout>
 
 <androidx.recyclerview.widget.RecyclerView
     xmlns:tools="http://schemas.android.com/tools"

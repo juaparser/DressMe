@@ -49,5 +49,6 @@
     <string name="title_random">El conjunto nuevo es…</string>
     <string name="txt_inicio_generar_conjunto">Generar conjunto aleatorio</string>
     <string name="txt_inicio_generar">Generar</string>
+    <string name="ropa_subCategoria">Subcategoría</string>
 
 </resources>

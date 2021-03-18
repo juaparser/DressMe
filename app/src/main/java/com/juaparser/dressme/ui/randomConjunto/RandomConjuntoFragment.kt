@@ -67,9 +67,9 @@ class RandomConjuntoFragment : Fragment() {
             var inferior: MutableList<Prenda>? = null
             var zapatos: MutableList<Prenda>? = null
             for (p in prendas) {
-                if (p == TopCategoria.Accesorios.name) {
+                if (p == TopCategoria.Accesorio.name) {
                     accesorio = DressMeApp.database.prendaDao()
-                        .getPrendasByFilters(TopCategoria.Accesorios, colorList, weatherList)
+                        .getPrendasByFilters(TopCategoria.Accesorio, colorList, weatherList)
                 }
                 if (p == TopCategoria.Superior.name) {
                     superior = DressMeApp.database.prendaDao()
@@ -79,9 +79,9 @@ class RandomConjuntoFragment : Fragment() {
                     inferior = DressMeApp.database.prendaDao()
                         .getPrendasByFilters(TopCategoria.Inferior, colorList, weatherList)
                 }
-                if (p == TopCategoria.Zapatos.name) {
+                if (p == TopCategoria.Calzado.name) {
                     zapatos = DressMeApp.database.prendaDao()
-                        .getPrendasByFilters(TopCategoria.Zapatos, colorList, weatherList)
+                        .getPrendasByFilters(TopCategoria.Calzado, colorList, weatherList)
                 }
             }
             uiThread {

@@ -39,10 +39,10 @@ class SubirConjuntoFragment : Fragment() {
         binding.dropdownTextTiempo.setAdapter(tiempoAdapter)
 
         doAsync{
-            var accesorios = DressMeApp.database.prendaDao().getNombrePrendasByCategory(TopCategoria.Accesorios)
+            var accesorios = DressMeApp.database.prendaDao().getNombrePrendasByCategory(TopCategoria.Accesorio)
             val superiores = DressMeApp.database.prendaDao().getNombrePrendasByCategory(TopCategoria.Superior)
             val inferiores = DressMeApp.database.prendaDao().getNombrePrendasByCategory(TopCategoria.Inferior)
-            val zapatos = DressMeApp.database.prendaDao().getNombrePrendasByCategory(TopCategoria.Zapatos)
+            val zapatos = DressMeApp.database.prendaDao().getNombrePrendasByCategory(TopCategoria.Calzado)
 
             uiThread {
                 binding.searchAccesorio.setAdapter(ArrayAdapter<String>(requireContext(), R.layout.material_sample_item, accesorios))
@@ -211,11 +211,11 @@ class SubirConjuntoFragment : Fragment() {
             var zapatos: Prenda? = null
 
             for(p in prendas) {
-                when(p.category){
-                    TopCategoria.Accesorios -> accesorio = p
+                when(p.topCategory){
+                    TopCategoria.Accesorio -> accesorio = p
                     TopCategoria.Superior -> superior = p
                     TopCategoria.Inferior -> inferior = p
-                    TopCategoria.Zapatos -> zapatos = p
+                    TopCategoria.Calzado -> zapatos = p
                 }
             }
             uiThread {
@@ -244,11 +244,11 @@ class SubirConjuntoFragment : Fragment() {
             var zapatos: Prenda? = null
 
             for(p in prendas) {
-                when(p.category){
-                    TopCategoria.Accesorios -> accesorio = p
+                when(p.topCategory){
+                    TopCategoria.Accesorio -> accesorio = p
                     TopCategoria.Superior -> superior = p
                     TopCategoria.Inferior -> inferior = p
-                    TopCategoria.Zapatos -> zapatos = p
+                    TopCategoria.Calzado -> zapatos = p
                 }
             }
 

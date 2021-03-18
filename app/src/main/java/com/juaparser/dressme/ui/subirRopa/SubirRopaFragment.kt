@@ -16,6 +16,10 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
 import com.juaparser.dressme.database.*
+import com.juaparser.dressme.database.enum.Accesorio
+import com.juaparser.dressme.database.enum.Calzado
+import com.juaparser.dressme.database.enum.Inferior
+import com.juaparser.dressme.database.enum.Superior
 import com.juaparser.dressme.databinding.FragmentSubirRopaBinding
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -39,6 +43,21 @@ class SubirRopaFragment : Fragment() {
         binding.dropdownTextCategoria.setAdapter(categoryAdapter)
         binding.dropdownTextColores.setAdapter(colorAdapter)
         binding.dropdownTextTiempo.setAdapter(tiempoAdapter)
+
+
+        binding.dropdownTextCategoria.setOnItemClickListener { parent, view, position, id ->
+            binding.dropdownTextSubCategoria.isEnabled = true
+            binding.dropdownTextSubCategoria.setText("")
+            var subCategories = when(binding.dropdownTextCategoria.text.toString()) {
+                "Accesorio" -> Accesorio.values()
+                "Superior" -> Superior.values()
+                "Inferior" -> Inferior.values()
+                "Calzado" -> Calzado.values()
+                else -> Accesorio.values()
+            }
+            val subCategoryAdapter = ArrayAdapter(requireContext(), R.layout.material_sample_item, subCategories)
+            binding.dropdownTextSubCategoria.setAdapter(subCategoryAdapter)
+        }
 
         edit = arguments?.getBoolean("edit") == true
 
@@ -87,8 +106,8 @@ class SubirRopaFragment : Fragment() {
 
         for(v in TopCategoria.values()) if(v.name == category) choosenCategory = v
         for(v in Color.values()) if(v.name == color) choosenColor = v
-
         for(v in Tiempo.values()) if(v.name == tiempo) choosenWeather = v
+
 
         doAsync {
             if (edit) {
@@ -104,7 +123,8 @@ class SubirRopaFragment : Fragment() {
                         prendaId = dbPrenda.prendaId,
                         name = binding.editNombre.editText?.text.toString(),
                         image = fileUri!!,
-                        category = choosenCategory,
+                        topCategory = choosenCategory,
+                        subCategory = binding.dropdownTextSubCategoria.text.toString(),
                         color = choosenColor,
                         weather = choosenWeather,
                         creationDate = dbPrenda.creationDate,
@@ -120,7 +140,8 @@ class SubirRopaFragment : Fragment() {
                 val prenda = Prenda(
                         name = binding.editNombre.editText?.text.toString(),
                         image = fileUri!!,
-                        category = choosenCategory,
+                        topCategory = choosenCategory,
+                        subCategory = binding.dropdownTextSubCategoria.text.toString(),
                         color = choosenColor,
                         weather = choosenWeather,
                         creationDate = Date(),
@@ -142,9 +163,10 @@ class SubirRopaFragment : Fragment() {
             uiThread {
                 binding.imageRopa.setImageURI(prenda.image)
                 binding.editNombre.editText?.setText(prenda.name)
-                binding.dropdownTextCategoria.setText(prenda.category.name, false)
+                binding.dropdownTextCategoria.setText(prenda.topCategory.name, false)
+                binding.dropdownTextSubCategoria.setText(prenda.subCategory, false)
                 binding.dropdownTextColores.setText(prenda.color.name, false)
-                binding.dropdownTextTiempo.setText(prenda.weather.name, false)
+                binding.dropdownTextTiempo.setText(prenda.weather?.name, false)
                 binding.editMarca.editText?.setText(prenda.brand)
                 binding.editTalla.editText?.setText(prenda.size)
             }

@@ -45,7 +45,7 @@ class ListAdapter(var ctx: Context, private val values: MutableList<Prenda>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         item = values[position]
         holder.nameView.text = item.name
-        holder.contentView.text = "${item.brand}, talla ${item.size}"
+        holder.contentView.text = item.subCategory
         holder.imageView.setImageURI(item.image)
 
 

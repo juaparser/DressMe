@@ -44,7 +44,8 @@ class VerPrendaFragment : Fragment() {
                 binding.imageRopa.setImageURI(prenda.image)
                 binding.textRopaName.text = prenda.name
                 binding.textRopaUses.text = prenda.uses.toString()
-                binding.textRopaCategoria.text = prenda.category.name
+                binding.textRopaCategoria.text = if(prenda.subCategory?.isNotEmpty() == true) prenda.subCategory else prenda.topCategory.name
+
                 binding.textRopaMarca.text = prenda.brand
                 binding.textRopaTalla.text = prenda.size
 
@@ -52,7 +53,7 @@ class VerPrendaFragment : Fragment() {
                 binding.layoutColores.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 binding.layoutColores.adapter = colorAdapter
 
-                binding.layoutTiempo.adapter = ArrayAdapter(requireContext(), R.layout.menu_item, arrayOf(prenda.weather.name))
+                binding.layoutTiempo.adapter = ArrayAdapter(requireContext(), R.layout.menu_item, arrayOf(prenda.weather?.name))
 
                 val dateFormat = DateFormat.getDateInstance()
                 binding.textRopaFechaCompra.text = dateFormat.format(prenda.purchaseDate!!)

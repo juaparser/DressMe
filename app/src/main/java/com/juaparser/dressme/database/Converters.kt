@@ -3,6 +3,10 @@ package com.juaparser.dressme.database
 import android.net.Uri
 import android.renderscript.RenderScript
 import androidx.room.TypeConverter
+import com.juaparser.dressme.database.enum.Accesorio
+import com.juaparser.dressme.database.enum.Calzado
+import com.juaparser.dressme.database.enum.Inferior
+import com.juaparser.dressme.database.enum.Superior
 import java.util.*
 
 class Converters {
@@ -56,6 +60,46 @@ class Converters {
     @TypeConverter
     fun toTiempo(tiempo: String): Tiempo {
         return Tiempo.valueOf(tiempo)
+    }
+
+    @TypeConverter
+    fun fromAccesorio(accesorio: Accesorio): String {
+        return accesorio.name
+    }
+
+    @TypeConverter
+    fun toAccesorio(accesorio: String): Accesorio {
+        return Accesorio.valueOf(accesorio)
+    }
+
+    @TypeConverter
+    fun fromSuperior(superior: Superior): String {
+        return superior.name
+    }
+
+    @TypeConverter
+    fun toSuperior(superior: String): Superior {
+        return Superior.valueOf(superior)
+    }
+
+    @TypeConverter
+    fun fromInferior(inferior: Inferior): String {
+        return inferior.name
+    }
+
+    @TypeConverter
+    fun toInferior(inferior: String): Inferior {
+        return Inferior.valueOf(inferior)
+    }
+
+    @TypeConverter
+    fun fromCalzado(calzado: Calzado): String {
+        return calzado.name
+    }
+
+    @TypeConverter
+    fun toCalzado(calzado: String): Calzado {
+        return Calzado.valueOf(calzado)
     }
 
 }

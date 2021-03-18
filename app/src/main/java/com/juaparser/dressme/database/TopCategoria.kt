@@ -1,8 +1,8 @@
 package com.juaparser.dressme.database
 
 enum class TopCategoria {
-    Accesorios,
+    Accesorio,
     Superior,
     Inferior,
-    Zapatos
+    Calzado
 }

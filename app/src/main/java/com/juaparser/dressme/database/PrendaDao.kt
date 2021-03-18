@@ -18,13 +18,16 @@ interface PrendaDao {
     @Query("SELECT * FROM prenda WHERE name LIKE :name")
     fun getPrendaByName(name: String): Prenda
 
-    @Query("SELECT * FROM prenda WHERE category LIKE :category")
-    fun getPrendasByCategory(category: TopCategoria): MutableList<Prenda>
+    @Query("SELECT * FROM prenda WHERE topCategory LIKE :topCategory")
+    fun getPrendasByCategory(topCategory: TopCategoria): MutableList<Prenda>
 
-    @Query("SELECT * FROM prenda WHERE category LIKE :category AND color IN (:colors) AND weather IN (:weathers)")
+    @Query("SELECT * FROM prenda WHERE topCategory LIKE :category AND color IN (:colors) AND weather IN (:weathers)")
     fun getPrendasByFilters(category: TopCategoria, colors: List<Color>, weathers: List<Tiempo>): MutableList<Prenda>
 
-    @Query("SELECT name FROM prenda WHERE category LIKE :category")
+    @Query("SELECT * FROM prenda WHERE subCategory LIKE :category")
+    fun getPrendasBySubcategories(category: String): MutableList<Prenda>
+
+    @Query("SELECT name FROM prenda WHERE topCategory LIKE :category")
     fun getNombrePrendasByCategory(category: TopCategoria): MutableList<String>
 
     @Update
