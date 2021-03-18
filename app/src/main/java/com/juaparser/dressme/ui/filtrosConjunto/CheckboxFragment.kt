@@ -37,8 +37,14 @@ class CheckboxFragment : Fragment() {
 
         when(type) {
             0 -> {
-                binding.listCheckbox.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.listCheckbox.adapter = CheckboxAdapter(TopCategoria.values(), null, null)
+                binding.listCheckbox.layoutManager = LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.VERTICAL,
+                        false)
+                binding.listCheckbox.adapter = CheckboxAdapter(
+                        TopCategoria.values(),
+                        null,
+                        null)
                 binding.btnConfirmarColores.text = requireContext().resources.getString(R.string.confirmar_categorias)
             }
             1 ->{

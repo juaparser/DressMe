@@ -58,7 +58,6 @@ class DemoCollectionPagerAdapter(fm: FragmentManager, var ctx: Context) : Fragme
     override fun getCount(): Int  = 4
 
     override fun getItem(i: Int): Fragment {
-        Log.e("PRUEBA", "Valor GET ITEM: $i")
         return ItemFragment(i)
     }
 

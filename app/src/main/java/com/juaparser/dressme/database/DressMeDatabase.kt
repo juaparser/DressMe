@@ -4,7 +4,10 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [Prenda::class, Conjunto::class, ConjuntoPrendaCrossRef::class], version = 1, exportSchema = false)
+@Database(entities = [Prenda::class, Conjunto::class, ConjuntoPrendaCrossRef::class],
+    version = 1,
+    exportSchema = false)
+
 @TypeConverters(Converters::class)
 abstract class DressMeDatabase : RoomDatabase() {
     abstract fun prendaDao(): PrendaDao

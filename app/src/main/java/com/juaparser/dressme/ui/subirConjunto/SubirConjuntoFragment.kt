@@ -218,8 +218,6 @@ class SubirConjuntoFragment : Fragment() {
                     TopCategoria.Zapatos -> zapatos = p
                 }
             }
-
-
             uiThread {
                 binding.imageConjunto.setImageURI(conjunto.image)
                 binding.editNombre.editText?.setText(conjunto.name)

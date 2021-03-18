@@ -62,7 +62,7 @@ class SubirRopaFragment : Fragment() {
                             ImagePicker.RESULT_ERROR -> {
                                 Toast.makeText(context, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
                             }
-                            else -> Toast.makeText(context, "Task Cancelled", Toast.LENGTH_SHORT).show()
+                            else -> Toast.makeText(context, "Tarea cancelada", Toast.LENGTH_SHORT).show()
                         }
                     }
         }
