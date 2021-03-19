@@ -32,7 +32,6 @@
                 android:id="@+id/textField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nova_round"
                 android:inputType="none" />
 
         </com.google.android.material.textfield.TextInputLayout>

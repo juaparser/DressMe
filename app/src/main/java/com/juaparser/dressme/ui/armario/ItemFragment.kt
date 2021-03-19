@@ -45,11 +45,20 @@ class ItemFragment(var i: Int) : Fragment() {
         }
 
         doAsync {
-            prendasList = when(i) {
-                0 -> DressMeApp.database.prendaDao().getPrendasByCategory(TopCategoria.Accesorio)
-                1 -> DressMeApp.database.prendaDao().getPrendasByCategory(TopCategoria.Superior)
-                2 -> DressMeApp.database.prendaDao().getPrendasByCategory(TopCategoria.Inferior)
-                else -> DressMeApp.database.prendaDao().getPrendasByCategory(TopCategoria.Calzado)
+            prendasList = if(DressMeApp.favPrendas){
+                when(i) {
+                    0 -> DressMeApp.database.prendaDao().getFavoritesPrendasByCategory(TopCategoria.Accesorio)
+                    1 -> DressMeApp.database.prendaDao().getFavoritesPrendasByCategory(TopCategoria.Superior)
+                    2 -> DressMeApp.database.prendaDao().getFavoritesPrendasByCategory(TopCategoria.Inferior)
+                    else -> DressMeApp.database.prendaDao().getFavoritesPrendasByCategory(TopCategoria.Calzado)
+                }
+            } else {
+                when (i) {
+                    0 -> DressMeApp.database.prendaDao().getPrendasByCategory(TopCategoria.Accesorio)
+                    1 -> DressMeApp.database.prendaDao().getPrendasByCategory(TopCategoria.Superior)
+                    2 -> DressMeApp.database.prendaDao().getPrendasByCategory(TopCategoria.Inferior)
+                    else -> DressMeApp.database.prendaDao().getPrendasByCategory(TopCategoria.Calzado)
+                }
             }
 
             uiThread {

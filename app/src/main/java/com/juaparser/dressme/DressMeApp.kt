@@ -15,6 +15,7 @@ class DressMeApp: Application() {
         lateinit var listCheckboxTiempo: MutableList<String>
 
         lateinit var listPrendas: MutableList<Prenda>
+        var favPrendas: Boolean = false
     }
 
     override fun onCreate() {

@@ -131,7 +131,8 @@ class SubirRopaFragment : Fragment() {
                         purchaseDate = Date(),
                         uses = dbPrenda.uses,
                         brand = binding.editMarca.editText?.text.toString(),
-                        size = binding.editTalla.editText?.text.toString()
+                        size = binding.editTalla.editText?.text.toString(),
+                        favorite = dbPrenda.favorite
                 )
 
                 DressMeApp.database.prendaDao().updatePrenda(prenda)
@@ -148,7 +149,8 @@ class SubirRopaFragment : Fragment() {
                         purchaseDate = Date(),
                         uses = 0,
                         brand = binding.editMarca.editText?.text.toString(),
-                        size = binding.editTalla.editText?.text.toString()
+                        size = binding.editTalla.editText?.text.toString(),
+                        favorite = false
                 )
                 DressMeApp.database.prendaDao().addPrenda(prenda)
             }

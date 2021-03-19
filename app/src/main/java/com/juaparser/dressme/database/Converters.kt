@@ -21,6 +21,15 @@ class Converters {
         return date?.time?.toLong()
     }
 
+    @TypeConverter
+    fun fromBoolean(value: Boolean): String {
+        return value.toString()
+    }
+
+    @TypeConverter
+    fun toBoolean(boolean: String): Boolean {
+        return boolean.toBoolean()
+    }
 
     @TypeConverter
     fun fromUri(uri: Uri): String {
