@@ -50,5 +50,7 @@
     <string name="txt_inicio_generar_conjunto">Generar conjunto aleatorio</string>
     <string name="txt_inicio_generar">Generar</string>
     <string name="ropa_subCategoria">Subcategoría</string>
+    <string name="favorite">Favoritos</string>
+    <string name="content_description_favorite">Prendas favoritas</string>
 
 </resources>

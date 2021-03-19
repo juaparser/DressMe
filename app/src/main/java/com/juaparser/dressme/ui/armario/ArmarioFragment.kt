@@ -7,9 +7,8 @@ import android.text.Spanned
 import android.text.style.DynamicDrawableSpan
 import android.text.style.ImageSpan
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -17,6 +16,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
 import com.juaparser.dressme.databinding.FragmentArmarioBinding
 
@@ -36,6 +36,8 @@ class ArmarioFragment : Fragment() {
             findNavController().navigate(R.id.action_nav_armario_to_nav_subirRopa)
         }
 
+        setHasOptionsMenu(true)
+
         return view
     }
 
@@ -47,6 +49,40 @@ class ArmarioFragment : Fragment() {
         val tabLayout: TabLayout = view.findViewById(R.id.tab_layout)
         tabLayout.setupWithViewPager(viewPager)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+        val favItem = menu.findItem(R.id.favorites)
+        favItem.isVisible = true
+        if(DressMeApp.favPrendas) {
+            favItem.setIcon(R.drawable.ic_fav_fill)
+        }
+        else {
+            favItem.setIcon(R.drawable.ic_fav_empty)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.favorites -> {
+                if(item.icon.constantState == ContextCompat.getDrawable(requireContext(), R.drawable.ic_fav_empty)?.constantState) {
+                    item.setIcon(R.drawable.ic_fav_fill)
+                    DressMeApp.favPrendas = true
+                    demoCollectionPagerAdapter = DemoCollectionPagerAdapter(childFragmentManager, requireContext())
+                    viewPager.adapter = demoCollectionPagerAdapter
+                }
+                else {
+                    item.setIcon(R.drawable.ic_fav_empty)
+                    DressMeApp.favPrendas = false
+                    demoCollectionPagerAdapter = DemoCollectionPagerAdapter(childFragmentManager, requireContext())
+                    viewPager.adapter = demoCollectionPagerAdapter
+                }
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 }

@@ -12,6 +12,8 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <item name="android:fontFamily">@font/proxima_nova</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -23,6 +25,7 @@
 
     <style name="Theme.DressMe.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">?attr/colorOnSecondary</item>
+        <item name="android:fontFamily">@font/proxima_nova</item>
     </style>
 
     <style name="Theme.DressMe.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
