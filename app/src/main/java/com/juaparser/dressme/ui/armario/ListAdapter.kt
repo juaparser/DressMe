@@ -152,6 +152,7 @@ class ListAdapter(var ctx: Context, private val values: MutableList<Prenda>)
                         .setPositiveButton("Eliminar") { dialog, which ->
                             doAsync{
                                 val dao = DressMeApp.database.prendaDao()
+                                DressMeApp.database.ConjuntoPrendaDao().deleteCrossRefPrenda(item.prendaId.toLong())
                                 dao.deletePrenda(item)
                                 uiThread {
                                     values.remove(item)

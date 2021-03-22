@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.juaparser.dressme.BuildConfig
 import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
 import com.juaparser.dressme.database.*
@@ -154,6 +155,11 @@ class SubirConjuntoFragment : Fragment() {
                 }
 
             } else {
+
+                if (fileUri == null) {
+                    fileUri = Uri.parse("android.resource://" + BuildConfig.APPLICATION_ID + "/" + R.drawable.imagen)
+                }
+
                 val conjunto = Conjunto(
                     name = binding.editNombre.editText?.text.toString(),
                     image = fileUri!!,
@@ -261,5 +267,28 @@ class SubirConjuntoFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun checkForm() : Boolean {
+        var res = true
+        val name = binding.editNombre.editText?.text.toString()
+        val accesorio = binding.searchAccesorio.text.toString()
+        val superior = binding.searchSuperior.text.toString()
+        val inferior = binding.searchInferior.text.toString()
+        val calzado = binding.searchZapatos.text.toString()
+
+        if(name.isBlank() || name.isEmpty()){
+            binding.editNombre.error = getString(R.string.error_nombre)
+            res = false
+        } else binding.editNombre.error = null
+
+        if((accesorio.isEmpty() || accesorio.isBlank()) && (superior.isEmpty() || superior.isBlank()) &&
+                (inferior.isEmpty() || inferior.isBlank()) && (calzado.isEmpty() || calzado.isBlank())) {
+            binding.searchAccesorio.error = getString(R.string.error_prendas)
+        } else {
+            binding.searchAccesorio.error = null
+        }
+
+        return res
     }
 }

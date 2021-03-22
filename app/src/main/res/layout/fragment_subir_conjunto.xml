@@ -48,6 +48,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginEnd="8dp"
             android:hint="@string/ropa_edit_nombre"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_conjunto">
@@ -64,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/buscar_accesorio"
+            app:errorEnabled="true"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -71,8 +73,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edit_nombre"
             android:completionThreshold="1"/>
-
-
 
         <AutoCompleteTextView
             android:id="@+id/search_superior"

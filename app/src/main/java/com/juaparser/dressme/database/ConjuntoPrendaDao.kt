@@ -22,6 +22,14 @@ interface ConjuntoPrendaDao {
     @Query("SELECT * FROM conjuntoPrendaCrossRef WHERE conjunto_id LIKE :id")
     fun getAllCrossRef(id: Long): MutableList<ConjuntoPrendaCrossRef>
 
+    @Transaction
+    @Query("SELECT * FROM conjuntoPrendaCrossRef")
+    fun getAllCrossRef(): MutableList<ConjuntoPrendaCrossRef>
+
+    @Transaction
+    @Query("DELETE FROM conjuntoPrendaCrossRef WHERE prenda_id LIKE :prendaId")
+    fun deleteCrossRefPrenda(prendaId: Long): Int
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addPrendaConConjunto(conjuntoPrendaCrossRef: ConjuntoPrendaCrossRef): Long
 

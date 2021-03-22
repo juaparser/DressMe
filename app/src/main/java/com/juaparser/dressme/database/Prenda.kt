@@ -13,7 +13,7 @@ import java.util.*
 data class Prenda (
         @PrimaryKey(autoGenerate = true) var prendaId: Int = 0,
         @ColumnInfo(name = "name") var name : String,
-        @ColumnInfo(name = "image") var image: Uri,
+        @ColumnInfo(name = "image") var image: Uri?,
         @ColumnInfo(name = "topCategory") var topCategory: TopCategoria,
         @ColumnInfo(name = "subCategory") var subCategory: String?,
         @ColumnInfo(name = "color") var color: Color,

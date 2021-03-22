@@ -52,5 +52,10 @@
     <string name="ropa_subCategoria">Subcategoría</string>
     <string name="favorite">Favoritos</string>
     <string name="content_description_favorite">Prendas favoritas</string>
+    <string name="fecha_compra">Fecha de compra</string>
+    <string name="error_nombre">El nombre es obligatorio</string>
+    <string name="error_category">Seleccione una categoría</string>
+    <string name="error_color">Seleccione un color</string>
+    <string name="error_prendas">Debe seleccionar al menos un tipo de prenda</string>
 
 </resources>

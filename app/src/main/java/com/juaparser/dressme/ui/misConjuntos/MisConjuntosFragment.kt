@@ -1,6 +1,7 @@
 package com.juaparser.dressme.ui.misConjuntos
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +29,7 @@ class MisConjuntosFragment : Fragment() {
         binding = FragmentMisConjuntosBinding.inflate(layoutInflater)
         val view = binding.root
 
-        binding.list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         binding.buttonSubirConjunto.setOnClickListener { _ ->
             findNavController().navigate(R.id.action_nav_misConjuntos_to_nav_subirConjunto)
@@ -36,6 +37,14 @@ class MisConjuntosFragment : Fragment() {
 
         doAsync {
             val conjuntos = DressMeApp.database.conjuntoDao().getAllConjuntos()
+            var nopos = DressMeApp.database.ConjuntoPrendaDao().getConjuntosConPrendas()
+            var nopnonos = DressMeApp.database.ConjuntoPrendaDao().getAllCrossRef()
+            for(a in nopos){
+                Log.e("PAELLA","CONJUNTO ${a.conjunto.conjuntoId} CON PRENDAS ${a.prendas}")
+            }
+            for(b in nopnonos) {
+                Log.e("PAELLA","${b.conjunto_id} Y PRENDA  ${b.prenda_id}")
+            }
 
             uiThread {
                 adapter = ConjuntosAdapter(requireContext(), conjuntos)

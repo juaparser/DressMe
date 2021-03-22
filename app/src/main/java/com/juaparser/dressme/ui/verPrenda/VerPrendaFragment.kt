@@ -56,7 +56,9 @@ class VerPrendaFragment : Fragment() {
                 binding.layoutTiempo.adapter = ArrayAdapter(requireContext(), R.layout.menu_item, arrayOf(prenda.weather?.name))
 
                 val dateFormat = DateFormat.getDateInstance()
-                binding.textRopaFechaCompra.text = dateFormat.format(prenda.purchaseDate!!)
+                if(prenda.purchaseDate == null) {
+                    binding.textRopaFechaCompra.text = "Sin información"
+                }else binding.textRopaFechaCompra.text = dateFormat.format(prenda.purchaseDate!!)
                 binding.textRopaFechaCreacion.text = dateFormat.format(prenda.creationDate)
 
             }

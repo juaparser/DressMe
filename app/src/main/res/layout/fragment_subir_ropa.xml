@@ -9,7 +9,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".ui.subirRopa.SubirRopaFragment">
 
 
@@ -50,6 +50,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginEnd="8dp"
             android:hint="@string/ropa_edit_nombre"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_ropa">
@@ -69,6 +70,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:hint="@string/ropa_categoria"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_nombre">
@@ -112,6 +114,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:hint="@string/ropa_colores"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dropdown_subCategoria">
@@ -183,19 +186,41 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fechaCompra"
+            style="@style/Widget.MaterialComponents.TimePicker.Button"
+            android:textColor="#D3555555"
+            android:textAlignment="textStart"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            app:iconTint="@color/themeColor"
+            app:icon="@drawable/ic_date"
+            app:iconGravity="start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/fecha_compra"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_talla"/>
+
+
         <Button
             android:id="@+id/subirPrenda"
             style="?attr/materialButtonStyle"
             android:backgroundTint="#41AA3A"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="24dp"
             android:text="@string/subir_prenda"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_talla" />
+            app:layout_constraintTop_toBottomOf="@id/fechaCompra" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

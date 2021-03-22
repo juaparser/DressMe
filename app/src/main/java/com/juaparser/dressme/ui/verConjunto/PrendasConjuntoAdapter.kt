@@ -25,7 +25,6 @@ import java.io.Serializable
 class PrendasConjuntoAdapter(var ctx: Context, private val values: List<Prenda>)
     : RecyclerView.Adapter<PrendasConjuntoAdapter.ViewHolder>() {
 
-    private lateinit var item: Prenda
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -36,7 +35,7 @@ class PrendasConjuntoAdapter(var ctx: Context, private val values: List<Prenda>)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        item = values[position]
+        val item = values[position]
         holder.nameView.text = item.name
         holder.contentView.text = item.uses.toString()
         holder.imagePrenda.setImageURI(item.image)
@@ -55,7 +54,7 @@ class PrendasConjuntoAdapter(var ctx: Context, private val values: List<Prenda>)
         init {
             view.setOnClickListener {
                 val bundle = Bundle()
-                bundle.putInt("itemId",item.prendaId)
+                bundle.putInt("itemId",values[adapterPosition].prendaId)
                 it.findNavController().navigate(R.id.nav_verPrenda, bundle)
             }
         }
