@@ -217,7 +217,7 @@ class SubirRopaFragment : Fragment() {
                 binding.dropdownTextTiempo.setText(prenda.weather?.name, false)
                 binding.editMarca.editText?.setText(prenda.brand)
                 binding.editTalla.editText?.setText(prenda.size)
-                binding.fechaCompra.text = dateFormat.format(prenda.purchaseDate!!)
+                if(prenda.purchaseDate != null) binding.fechaCompra.text = dateFormat.format(prenda.purchaseDate!!)
             }
         }
 

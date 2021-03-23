@@ -107,7 +107,15 @@
         android:id="@+id/nav_verPrenda"
         android:name="com.juaparser.dressme.ui.verPrenda.VerPrendaFragment"
         android:label="@string/menu_verPrenda"
-        tools:layout="@layout/fragment_ver_prenda" />
+        tools:layout="@layout/fragment_ver_prenda" >
+        <action
+            android:id="@+id/action_nav_verPrenda_to_nav_armario"
+            app:destination="@id/nav_armario"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_misConjuntos"
@@ -160,6 +168,13 @@
             app:popExitAnim="@anim/fragment_fade_exit"
             app:popUpTo="@id/nav_verConjunto"
             app:destination="@id/nav_verPrenda" />
+        <action
+            android:id="@+id/action_nav_verConjunto_to_nav_misConjuntos"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
+            app:destination="@id/nav_misConjuntos" />
     </fragment>
 
     <fragment
