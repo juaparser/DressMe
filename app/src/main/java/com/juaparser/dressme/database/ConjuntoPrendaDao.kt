@@ -30,6 +30,10 @@ interface ConjuntoPrendaDao {
     @Query("DELETE FROM conjuntoPrendaCrossRef WHERE prenda_id LIKE :prendaId")
     fun deleteCrossRefPrenda(prendaId: Long): Int
 
+    @Transaction
+    @Query("DELETE FROM conjuntoPrendaCrossRef WHERE conjunto_id LIKE :conjuntoId AND prenda_id LIKE :prendaId")
+    fun deleteCrossRef(conjuntoId: Long, prendaId: Long): Int
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addPrendaConConjunto(conjuntoPrendaCrossRef: ConjuntoPrendaCrossRef): Long
 

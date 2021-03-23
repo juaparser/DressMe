@@ -46,7 +46,7 @@ class VerConjuntoFragment : Fragment() {
                 binding.layoutTiempo.adapter = ArrayAdapter(requireContext(), R.layout.menu_item, arrayOf(conjunto.weather?.name))
 
                 binding.prendasConjuntoList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.prendasConjuntoList.adapter = PrendasConjuntoAdapter(requireContext(), prendas)
+                binding.prendasConjuntoList.adapter = PrendasConjuntoAdapter(requireContext(),conjuntoId, prendas)
 
             }
         }

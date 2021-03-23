@@ -22,7 +22,7 @@ import org.jetbrains.anko.uiThread
 import java.io.Serializable
 
 
-class PrendasConjuntoAdapter(var ctx: Context, private val values: List<Prenda>)
+class PrendasConjuntoAdapter(var ctx: Context, var conjuntoId: Long, private val values: MutableList<Prenda>)
     : RecyclerView.Adapter<PrendasConjuntoAdapter.ViewHolder>() {
 
 
@@ -37,9 +37,17 @@ class PrendasConjuntoAdapter(var ctx: Context, private val values: List<Prenda>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
         holder.nameView.text = item.name
-        holder.contentView.text = item.uses.toString()
+        val content = if(item.subCategory == null) "" else item.subCategory
+        holder.contentView.text = content
         holder.imagePrenda.setImageURI(item.image)
 
+        if(values.size < 2 ) {
+            holder.quitarPrenda.visibility = View.INVISIBLE
+            //notifyDataSetChanged()
+        } else {
+            holder.quitarPrenda.visibility = View.VISIBLE
+            //notifyDataSetChanged()
+        }
 
     }
 
@@ -50,12 +58,31 @@ class PrendasConjuntoAdapter(var ctx: Context, private val values: List<Prenda>)
         val imagePrenda: ImageView = view.findViewById(R.id.imagePrenda)
         val nameView: TextView = view.findViewById(R.id.item_name)
         val contentView: TextView = view.findViewById(R.id.content)
+        val quitarPrenda: ImageView = view.findViewById(R.id.btn_quitarPrenda)
+
 
         init {
             view.setOnClickListener {
                 val bundle = Bundle()
                 bundle.putInt("itemId",values[adapterPosition].prendaId)
                 it.findNavController().navigate(R.id.nav_verPrenda, bundle)
+            }
+
+            quitarPrenda.setOnClickListener {
+                if(values.size < 2 ) {
+                    Toast.makeText(ctx, "El conjunto no puede tener 0 prendas.", Toast.LENGTH_LONG).show()
+                } else {
+                    val prenda = values[adapterPosition]
+                    doAsync {
+                        DressMeApp.database.ConjuntoPrendaDao().deleteCrossRef(conjuntoId, prenda.prendaId.toLong())
+                        uiThread {
+                            val pos = values.indexOf(prenda)
+                            values.remove(prenda)
+                            this@PrendasConjuntoAdapter.notifyItemRemoved(pos)
+                        }
+                    }
+                }
+
             }
         }
 

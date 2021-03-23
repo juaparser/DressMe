@@ -19,7 +19,7 @@ data class ConjuntoConPrendas(
                     entityColumn = "prenda_id",
                     parentColumn = "conjunto_id")
     )
-    val prendas: List<Prenda>
+    val prendas: MutableList<Prenda>
 )
 
 data class PrendaConConjuntos(
@@ -33,5 +33,5 @@ data class PrendaConConjuntos(
                         entityColumn = "conjunto_id",
                         parentColumn = "prenda_id")
     )
-    val conjuntos: List<Conjunto>
+    val conjuntos: MutableList<Conjunto>
 )

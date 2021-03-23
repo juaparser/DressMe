@@ -37,14 +37,6 @@ class MisConjuntosFragment : Fragment() {
 
         doAsync {
             val conjuntos = DressMeApp.database.conjuntoDao().getAllConjuntos()
-            var nopos = DressMeApp.database.ConjuntoPrendaDao().getConjuntosConPrendas()
-            var nopnonos = DressMeApp.database.ConjuntoPrendaDao().getAllCrossRef()
-            for(a in nopos){
-                Log.e("PAELLA","CONJUNTO ${a.conjunto.conjuntoId} CON PRENDAS ${a.prendas}")
-            }
-            for(b in nopnonos) {
-                Log.e("PAELLA","${b.conjunto_id} Y PRENDA  ${b.prenda_id}")
-            }
 
             uiThread {
                 adapter = ConjuntosAdapter(requireContext(), conjuntos)
