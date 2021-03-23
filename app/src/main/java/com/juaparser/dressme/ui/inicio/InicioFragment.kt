@@ -27,7 +27,7 @@ class InicioFragment : Fragment() {
         }
 
         binding.btnGenerarConjunto.setOnClickListener {
-            findNavController().navigate(R.id.nav_filtrarConjunto)
+            findNavController().navigate(R.id.action_nav_home_to_nav_filtrarConjunto)
         }
 
         return view

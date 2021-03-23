@@ -1,9 +1,10 @@
 package com.juaparser.dressme
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.Menu
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
+import android.view.View
+import android.widget.CompoundButton
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -14,6 +15,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.room.Room
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.juaparser.dressme.database.DressMeDatabase
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -30,6 +34,14 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
 
+        val infoButton : MaterialButton = findViewById(R.id.btn_info)
+        infoButton.textAlignment = View.TEXT_ALIGNMENT_TEXT_START
+
+        infoButton.setOnClickListener {
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_info)
+            drawerLayout.closeDrawers()
+
+        }
 
         appBarConfiguration = AppBarConfiguration(setOf(
             R.id.nav_home,
@@ -41,14 +53,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+
+
 }
