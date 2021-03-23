@@ -18,4 +18,5 @@
             android:icon="@drawable/ic_armario"
             android:title="@string/menu_armario" />
     </group>
+
 </menu>

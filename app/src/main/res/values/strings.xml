@@ -57,5 +57,19 @@
     <string name="error_category">Seleccione una categoría</string>
     <string name="error_color">Seleccione un color</string>
     <string name="error_prendas">Debe seleccionar al menos un tipo de prenda</string>
+    <string name="modo_oscuro">Modo oscuro</string>
+    <string name="modo_claro">Modo claro</string>
+    <string name="app_info">Información</string>
+    <string name="app_info_description">
+        DressMe! permite el almacenamiento de la ropa y los conjuntos del usuario de forma virtual y personalizándolo con las características
+        e información que se quiera, incluso la creación de conjuntos aleatorios. \n
+        \n Proyecto de fin de máster para INESEM Business School.
+    </string>
+    <string name="app_version">1.0.0</string>
+    <string name="menu_info">Información</string>
+    <string name="github_url">Github url</string>
+    <string name="menu_generarConjunto">Conjunto aleatorio</string>
+    <string name="menu_filtrarConjunto">Filtrar conjunto</string>
+    <string name="menu_checkbox">Seleccione opciones...</string>
 
 </resources>
