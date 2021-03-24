@@ -45,7 +45,6 @@ class VerPrendaFragment : Fragment() {
             uiThread{
                 binding.imageRopa.setImageURI(prenda.image)
                 binding.textRopaName.text = prenda.name
-                binding.textRopaUses.text = prenda.uses.toString()
                 binding.textRopaCategoria.text = if(prenda.subCategory?.isNotEmpty() == true) prenda.subCategory else prenda.topCategory.name
 
                 binding.textRopaMarca.text = prenda.brand

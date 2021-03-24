@@ -89,183 +89,185 @@ class SubirConjuntoFragment : Fragment() {
         }
 
         binding.subirConjunto.setOnClickListener {
-            DressMeApp.listPrendas = mutableListOf()
-            DressMeApp.listCheckboxTiempo = mutableListOf()
-            DressMeApp.listCheckboxColores = mutableListOf()
-            DressMeApp.listCheckboxPrendas = mutableListOf()
-            subirConjunto()
-            findNavController().navigate(R.id.nav_misConjuntos)
+            if (subirConjunto()){
+                DressMeApp.listPrendas = mutableListOf()
+                DressMeApp.listCheckboxTiempo = mutableListOf()
+                DressMeApp.listCheckboxColores = mutableListOf()
+                DressMeApp.listCheckboxPrendas = mutableListOf()
+                findNavController().navigate(R.id.nav_misConjuntos)
+            }
         }
 
         return view
     }
 
-    private fun subirConjunto() {
+    private fun subirConjunto(): Boolean {
         var tiempo = binding.dropdownTextTiempo.text.toString()
         var choosenWeather = Tiempo.Soleado
+        var res = true
 
         for(v in Tiempo.values()) if(v.name == tiempo) choosenWeather = v
 
-        doAsync {
-            if (edit) {
-                Log.e("PAELLA", "ENTRAMOS EN EDIT")
-                val itemId: Long? = arguments?.getLong("itemId")
-                val dbConjunto = DressMeApp.database.conjuntoDao().getConjuntoById(itemId!!)
+        if(checkForm()) {
+            doAsync {
+                if (edit) {
+                    Log.e("PAELLA", "ENTRAMOS EN EDIT")
+                    val itemId: Long? = arguments?.getLong("itemId")
+                    val dbConjunto = DressMeApp.database.conjuntoDao().getConjuntoById(itemId!!)
 
-                if(fileUri == null) {
-                    fileUri = dbConjunto.image
-                }
+                    if (fileUri == null) {
+                        fileUri = dbConjunto.image
+                    }
 
-                Log.e("PAELLA", "DB CONJUNTO ES $dbConjunto")
-                val conjunto = Conjunto(
-                    conjuntoId = dbConjunto.conjuntoId,
-                    name = binding.editNombre.editText?.text.toString(),
-                    image = fileUri!!,
-                    weather = choosenWeather,
-                    uses = dbConjunto.uses
-                )
-                val okok = DressMeApp.database.ConjuntoPrendaDao().getAllCrossRef(dbConjunto.conjuntoId)
-                Log.e("PAELLA", "CROSS REF DB CONJUNTO $okok")
+                    Log.e("PAELLA", "DB CONJUNTO ES $dbConjunto")
+                    val conjunto = Conjunto(
+                            conjuntoId = dbConjunto.conjuntoId,
+                            name = binding.editNombre.editText?.text.toString(),
+                            image = fileUri!!,
+                            weather = choosenWeather
+                    )
+                    val okok = DressMeApp.database.ConjuntoPrendaDao().getAllCrossRef(dbConjunto.conjuntoId)
 
-                DressMeApp.database.conjuntoDao().updateConjunto(conjunto)
+                    DressMeApp.database.conjuntoDao().updateConjunto(conjunto)
 
-                Log.e("PAELLA", "CONJUNTO UPDATEADO $conjunto")
 
-                var accesorio: String? = binding.searchAccesorio.text.toString()
-                var superior: String? = binding.searchSuperior.text.toString()
-                var inferior: String? = binding.searchInferior.text.toString()
-                var zapatos: String? = binding.searchZapatos.text.toString()
+                    var accesorio: String? = binding.searchAccesorio.text.toString()
+                    var superior: String? = binding.searchSuperior.text.toString()
+                    var inferior: String? = binding.searchInferior.text.toString()
+                    var zapatos: String? = binding.searchZapatos.text.toString()
 
-                val dao = DressMeApp.database.prendaDao()
+                    val dao = DressMeApp.database.prendaDao()
 
-                var prendaAccesorio: Prenda?
-                var prendaSuperior: Prenda?
-                var prendaInferior: Prenda?
-                var prendaZapatos: Prenda?
+                    var prendaAccesorio: Prenda?
+                    var prendaSuperior: Prenda?
+                    var prendaInferior: Prenda?
+                    var prendaZapatos: Prenda?
 
-                if(!accesorio.isNullOrBlank()) {
-                    prendaAccesorio = dao.getPrendaByName(accesorio)
-                    if(dbAccesorio!=null){
-                        // Significa que ya tenia superior
-                        if(dbAccesorio!!.prendaId != prendaAccesorio.prendaId){
+                    if (!accesorio.isNullOrBlank()) {
+                        prendaAccesorio = dao.getPrendaByName(accesorio)
+                        if (dbAccesorio != null) {
+                            // Significa que ya tenia superior
+                            if (dbAccesorio!!.prendaId != prendaAccesorio.prendaId) {
+                                DressMeApp.database.ConjuntoPrendaDao().deleteCrossRef(dbConjunto.conjuntoId, dbAccesorio!!.prendaId.toLong())
+                                val cross = ConjuntoPrendaCrossRef(prendaAccesorio.prendaId.toLong(), conjunto.conjuntoId)
+                                DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
+                            } // else significa que es el mismo y no se ha cambiado
+                        } else {
+                            val cross = ConjuntoPrendaCrossRef(prendaAccesorio.prendaId.toLong(), conjunto.conjuntoId)
+                            DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
+                        }
+                    } else {
+                        if (dbAccesorio != null) {
                             DressMeApp.database.ConjuntoPrendaDao().deleteCrossRef(dbConjunto.conjuntoId, dbAccesorio!!.prendaId.toLong())
-                            val cross = ConjuntoPrendaCrossRef(prendaAccesorio.prendaId.toLong(),conjunto.conjuntoId)
+                        }
+                    }
+                    if (!superior.isNullOrBlank()) {
+                        prendaSuperior = dao.getPrendaByName(superior)
+                        if (dbSuperior != null) {
+                            // Significa que ya tenia superior
+                            if (dbSuperior!!.prendaId != prendaSuperior.prendaId) {
+                                DressMeApp.database.ConjuntoPrendaDao().deleteCrossRef(dbConjunto.conjuntoId, dbSuperior!!.prendaId.toLong())
+                                val cross = ConjuntoPrendaCrossRef(prendaSuperior.prendaId.toLong(), conjunto.conjuntoId)
+                                DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
+                            } // else significa que es el mismo y no se ha cambiado
+                        } else {
+                            val cross = ConjuntoPrendaCrossRef(prendaSuperior.prendaId.toLong(), conjunto.conjuntoId)
                             DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
-                        } // else significa que es el mismo y no se ha cambiado
+                        }
                     } else {
-                        val cross = ConjuntoPrendaCrossRef(prendaAccesorio.prendaId.toLong(),conjunto.conjuntoId)
-                        DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
-                    }
-                } else {
-                    if(dbAccesorio!=null) {
-                        DressMeApp.database.ConjuntoPrendaDao().deleteCrossRef(dbConjunto.conjuntoId, dbAccesorio!!.prendaId.toLong())
-                    }
-                }
-                if(!superior.isNullOrBlank()) {
-                    prendaSuperior = dao.getPrendaByName(superior)
-                    if(dbSuperior!=null){
-                        // Significa que ya tenia superior
-                        if(dbSuperior!!.prendaId != prendaSuperior.prendaId){
+                        if (dbSuperior != null) {
                             DressMeApp.database.ConjuntoPrendaDao().deleteCrossRef(dbConjunto.conjuntoId, dbSuperior!!.prendaId.toLong())
-                            val cross = ConjuntoPrendaCrossRef(prendaSuperior.prendaId.toLong(),conjunto.conjuntoId)
-                            DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
-                        } // else significa que es el mismo y no se ha cambiado
-                    } else {
-                        val cross = ConjuntoPrendaCrossRef(prendaSuperior.prendaId.toLong(),conjunto.conjuntoId)
-                        DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
+                        }
                     }
-                } else {
-                    if(dbSuperior!=null) {
-                        DressMeApp.database.ConjuntoPrendaDao().deleteCrossRef(dbConjunto.conjuntoId, dbSuperior!!.prendaId.toLong())
-                    }
-                }
 
-                if(!inferior.isNullOrBlank()){
-                    prendaInferior = dao.getPrendaByName(inferior)
-                    if(dbInferior!=null){
-                        // Significa que ya tenia superior
-                        if(dbInferior!!.prendaId != prendaInferior.prendaId){
+                    if (!inferior.isNullOrBlank()) {
+                        prendaInferior = dao.getPrendaByName(inferior)
+                        if (dbInferior != null) {
+                            // Significa que ya tenia superior
+                            if (dbInferior!!.prendaId != prendaInferior.prendaId) {
+                                DressMeApp.database.ConjuntoPrendaDao().deleteCrossRef(dbConjunto.conjuntoId, dbInferior!!.prendaId.toLong())
+                                val cross = ConjuntoPrendaCrossRef(prendaInferior.prendaId.toLong(), conjunto.conjuntoId)
+                                DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
+                            } // else significa que es el mismo y no se ha cambiado
+                        } else {
+                            val cross = ConjuntoPrendaCrossRef(prendaInferior.prendaId.toLong(), conjunto.conjuntoId)
+                            DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
+                        }
+                    } else {
+                        if (dbInferior != null) {
                             DressMeApp.database.ConjuntoPrendaDao().deleteCrossRef(dbConjunto.conjuntoId, dbInferior!!.prendaId.toLong())
-                            val cross = ConjuntoPrendaCrossRef(prendaInferior.prendaId.toLong(),conjunto.conjuntoId)
+                        }
+                    }
+                    if (!zapatos.isNullOrBlank()) {
+                        prendaZapatos = dao.getPrendaByName(zapatos)
+                        if (dbZapatos != null) {
+                            // Significa que ya tenia superior
+                            if (dbZapatos!!.prendaId != prendaZapatos.prendaId) {
+                                DressMeApp.database.ConjuntoPrendaDao().deleteCrossRef(dbConjunto.conjuntoId, dbZapatos!!.prendaId.toLong())
+                                val cross = ConjuntoPrendaCrossRef(prendaZapatos.prendaId.toLong(), conjunto.conjuntoId)
+                                DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
+                            } // else significa que es el mismo y no se ha cambiado
+                        } else {
+                            val cross = ConjuntoPrendaCrossRef(prendaZapatos.prendaId.toLong(), conjunto.conjuntoId)
                             DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
-                        } // else significa que es el mismo y no se ha cambiado
+                        }
                     } else {
-                        val cross = ConjuntoPrendaCrossRef(prendaInferior.prendaId.toLong(),conjunto.conjuntoId)
-                        DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
-                    }
-                } else {
-                    if(dbInferior!=null) {
-                        DressMeApp.database.ConjuntoPrendaDao().deleteCrossRef(dbConjunto.conjuntoId, dbInferior!!.prendaId.toLong())
-                    }
-                }
-                if(!zapatos.isNullOrBlank()) {
-                    prendaZapatos = dao.getPrendaByName(zapatos)
-                    if(dbZapatos!=null){
-                        // Significa que ya tenia superior
-                        if(dbZapatos!!.prendaId != prendaZapatos.prendaId){
+                        if (dbZapatos != null) {
                             DressMeApp.database.ConjuntoPrendaDao().deleteCrossRef(dbConjunto.conjuntoId, dbZapatos!!.prendaId.toLong())
-                            val cross = ConjuntoPrendaCrossRef(prendaZapatos.prendaId.toLong(),conjunto.conjuntoId)
-                            DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
-                        } // else significa que es el mismo y no se ha cambiado
-                    } else {
-                        val cross = ConjuntoPrendaCrossRef(prendaZapatos.prendaId.toLong(),conjunto.conjuntoId)
+                        }
+                    }
+
+                } else {
+
+                    if (fileUri == null) {
+                        fileUri = Uri.parse("android.resource://" + BuildConfig.APPLICATION_ID + "/" + R.drawable.imagen)
+                    }
+
+                    val conjunto = Conjunto(
+                            name = binding.editNombre.editText?.text.toString(),
+                            image = fileUri!!,
+                            weather = choosenWeather
+                    )
+
+                    var conjuntoId = DressMeApp.database.conjuntoDao().addConjunto(conjunto)
+
+                    var accesorio: String? = binding.searchAccesorio.text.toString()
+                    var superior: String? = binding.searchSuperior.text.toString()
+                    var inferior: String? = binding.searchInferior.text.toString()
+                    var zapatos: String? = binding.searchZapatos.text.toString()
+
+                    val dao = DressMeApp.database.prendaDao()
+
+                    var prendaAccesorio: Prenda?
+                    var prendaSuperior: Prenda?
+                    var prendaInferior: Prenda?
+                    var prendaZapatos: Prenda?
+
+                    if (!accesorio.isNullOrBlank()) {
+                        prendaAccesorio = dao.getPrendaByName(accesorio)
+                        val cross = ConjuntoPrendaCrossRef(prendaAccesorio.prendaId.toLong(), conjuntoId.toLong())
                         DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
                     }
-                } else {
-                    if(dbZapatos!=null) {
-                        DressMeApp.database.ConjuntoPrendaDao().deleteCrossRef(dbConjunto.conjuntoId, dbZapatos!!.prendaId.toLong())
+                    if (!superior.isNullOrBlank()) {
+                        prendaSuperior = dao.getPrendaByName(superior)
+                        val cross = ConjuntoPrendaCrossRef(prendaSuperior.prendaId.toLong(), conjuntoId.toLong())
+                        DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
                     }
-                }
-
-            } else {
-
-                if (fileUri == null) {
-                    fileUri = Uri.parse("android.resource://" + BuildConfig.APPLICATION_ID + "/" + R.drawable.imagen)
-                }
-
-                val conjunto = Conjunto(
-                    name = binding.editNombre.editText?.text.toString(),
-                    image = fileUri!!,
-                    weather = choosenWeather,
-                    uses = 0
-                )
-
-                var conjuntoId = DressMeApp.database.conjuntoDao().addConjunto(conjunto)
-
-                var accesorio: String? = binding.searchAccesorio.text.toString()
-                var superior: String? = binding.searchSuperior.text.toString()
-                var inferior: String? = binding.searchInferior.text.toString()
-                var zapatos: String? = binding.searchZapatos.text.toString()
-
-                 val dao = DressMeApp.database.prendaDao()
-
-                var prendaAccesorio: Prenda?
-                var prendaSuperior: Prenda?
-                var prendaInferior: Prenda?
-                var prendaZapatos: Prenda?
-
-                if(!accesorio.isNullOrBlank()) {
-                    prendaAccesorio = dao.getPrendaByName(accesorio)
-                    val cross = ConjuntoPrendaCrossRef(prendaAccesorio.prendaId.toLong(), conjuntoId.toLong())
-                    DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
-                }
-                if(!superior.isNullOrBlank()) {
-                    prendaSuperior = dao.getPrendaByName(superior)
-                    val cross = ConjuntoPrendaCrossRef(prendaSuperior.prendaId.toLong(), conjuntoId.toLong())
-                    DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
-                }
-                if(!inferior.isNullOrBlank()){
-                    prendaInferior = dao.getPrendaByName(inferior)
-                    val cross = ConjuntoPrendaCrossRef(prendaInferior.prendaId.toLong(), conjuntoId.toLong())
-                    DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
-                }
-                if(!zapatos.isNullOrBlank()) {
-                    prendaZapatos = dao.getPrendaByName(zapatos)
-                    val cross = ConjuntoPrendaCrossRef(prendaZapatos.prendaId.toLong(), conjuntoId.toLong())
-                    DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
+                    if (!inferior.isNullOrBlank()) {
+                        prendaInferior = dao.getPrendaByName(inferior)
+                        val cross = ConjuntoPrendaCrossRef(prendaInferior.prendaId.toLong(), conjuntoId.toLong())
+                        DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
+                    }
+                    if (!zapatos.isNullOrBlank()) {
+                        prendaZapatos = dao.getPrendaByName(zapatos)
+                        val cross = ConjuntoPrendaCrossRef(prendaZapatos.prendaId.toLong(), conjuntoId.toLong())
+                        DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
+                    }
                 }
             }
-        }
+        } else res = false
+
+        return res
     }
 
     private fun setFields(itemId: Long) {
@@ -343,7 +345,10 @@ class SubirConjuntoFragment : Fragment() {
 
         if((accesorio.isEmpty() || accesorio.isBlank()) && (superior.isEmpty() || superior.isBlank()) &&
                 (inferior.isEmpty() || inferior.isBlank()) && (calzado.isEmpty() || calzado.isBlank())) {
-            binding.searchAccesorio.error = getString(R.string.error_prendas)
+                    var msg = getString(R.string.error_prendas)
+            binding.searchAccesorio.error = msg
+            Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
+            res = false
         } else {
             binding.searchAccesorio.error = null
         }

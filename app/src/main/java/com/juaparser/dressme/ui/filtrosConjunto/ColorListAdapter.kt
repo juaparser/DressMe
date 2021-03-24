@@ -28,7 +28,7 @@ class ColorListAdapter(var ctx: Context, private val values: MutableList<String>
 
         if(type == 0) {
             when (item) {
-                "Accesorios" -> {
+                "Accesorio" -> {
                     val unwrappedDrawable = ResourcesCompat.getDrawable(ctx.resources, R.drawable.ic_reloj, null)
                     val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
                     DrawableCompat.setTint(wrappedDrawable, ResourcesCompat.getColor(ctx.resources, R.color.themeColor, null))
@@ -46,7 +46,7 @@ class ColorListAdapter(var ctx: Context, private val values: MutableList<String>
                     DrawableCompat.setTint(wrappedDrawable, ResourcesCompat.getColor(ctx.resources, R.color.themeColor, null))
                     holder.imageView.setImageDrawable(wrappedDrawable)
                 }
-                "Zapatos" -> {
+                "Calzado" -> {
                     val unwrappedDrawable = ResourcesCompat.getDrawable(ctx.resources, R.drawable.ic_zapatos, null)
                     val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
                     DrawableCompat.setTint(wrappedDrawable, ResourcesCompat.getColor(ctx.resources, R.color.themeColor, null))

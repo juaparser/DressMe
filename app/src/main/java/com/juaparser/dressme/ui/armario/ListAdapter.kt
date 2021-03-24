@@ -59,7 +59,6 @@ class ListAdapter(var ctx: Context, private val values: MutableList<Prenda>)
                             weather = dbPrenda.weather,
                             creationDate = dbPrenda.creationDate,
                             purchaseDate = dbPrenda.purchaseDate,
-                            uses = dbPrenda.uses,
                             brand = dbPrenda.brand,
                             size = dbPrenda.size,
                             favorite = true
@@ -84,7 +83,6 @@ class ListAdapter(var ctx: Context, private val values: MutableList<Prenda>)
                             weather = dbPrenda.weather,
                             creationDate = dbPrenda.creationDate,
                             purchaseDate = dbPrenda.purchaseDate,
-                            uses = dbPrenda.uses,
                             brand = dbPrenda.brand,
                             size = dbPrenda.size,
                             favorite = false

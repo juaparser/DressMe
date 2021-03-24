@@ -130,7 +130,6 @@ class SubirRopaFragment : Fragment() {
         for(v in Tiempo.values()) if(v.name == tiempo) choosenWeather = v
 
         if(checkForm()) {
-            Log.e("PAELLA", "CHEFORM BIEN")
             doAsync {
                 if (edit) {
 
@@ -141,7 +140,6 @@ class SubirRopaFragment : Fragment() {
                         fileUri = dbPrenda.image
                     }
 
-                    val fecha = binding.fechaCompra.text.toString()
 
                     val prenda = Prenda(
                             prendaId = dbPrenda.prendaId,
@@ -153,7 +151,6 @@ class SubirRopaFragment : Fragment() {
                             weather = choosenWeather,
                             creationDate = dbPrenda.creationDate,
                             purchaseDate = fechaCompra,
-                            uses = dbPrenda.uses,
                             brand = binding.editMarca.editText?.text.toString(),
                             size = binding.editTalla.editText?.text.toString(),
                             favorite = dbPrenda.favorite
@@ -167,10 +164,6 @@ class SubirRopaFragment : Fragment() {
                         fileUri = Uri.parse("android.resource://" + BuildConfig.APPLICATION_ID + "/" + R.drawable.imagen)
                     }
 
-                    Log.e("PAELLA", "ENTRAMOS EN GUARDAR")
-                    Log.e("PAELLA", "ENTRAMOS EN GUARDAR, $fechaCompra")
-
-
                     val prenda = Prenda(
                             name = binding.editNombre.editText?.text.toString(),
                             image = fileUri!!,
@@ -180,17 +173,12 @@ class SubirRopaFragment : Fragment() {
                             weather = choosenWeather,
                             creationDate = Date(),
                             purchaseDate = fechaCompra,
-                            uses = 0,
                             brand = binding.editMarca.editText?.text.toString(),
                             size = binding.editTalla.editText?.text.toString(),
                             favorite = false
                     )
-
-                    Log.e("PAELLA", "ANTES DE GUARDAR ${prenda.purchaseDate}")
-
                     DressMeApp.database.prendaDao().addPrenda(prenda)
 
-                    Log.e("PAELLA", "DESPUES DE GUARDAR ${prenda}")
                 }
             }
         } else {

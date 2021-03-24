@@ -12,11 +12,13 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
 import com.juaparser.dressme.database.Conjunto
 import com.juaparser.dressme.database.Prenda
+import com.juaparser.dressme.ui.filtrosConjunto.ColorListAdapter
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.io.Serializable
@@ -25,11 +27,15 @@ import java.io.Serializable
 class ConjuntosAdapter(var ctx: Context, private val values: MutableList<Conjunto>)
     : RecyclerView.Adapter<ConjuntosAdapter.ViewHolder>() {
 
+    private lateinit var prendasList: MutableList<Prenda>
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.fragment_item_conjunto, parent, false)
 
         view.isLongClickable = true
+
+
 
         return ViewHolder(view)
     }
@@ -37,8 +43,15 @@ class ConjuntosAdapter(var ctx: Context, private val values: MutableList<Conjunt
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
         holder.nameView.text = item.name
-        holder.contentView.text = item.uses.toString()
+        holder.imageView.setImageURI(item.image)
+        doAsync {
+            val prendas = DressMeApp.database.ConjuntoPrendaDao().getConjuntoConPrendas(item.conjuntoId)
+            uiThread {
+                holder.contentView.layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
+                holder.contentView.adapter = PrendaConjuntoAdapter(ctx, prendas.prendas)
 
+            }
+        }
     }
 
     override fun getItemCount(): Int = values.size
@@ -47,17 +60,14 @@ class ConjuntosAdapter(var ctx: Context, private val values: MutableList<Conjunt
     View.OnClickListener {
 
         val nameView: TextView = view.findViewById(R.id.item_name)
-        val contentView: TextView = view.findViewById(R.id.content)
+        val contentView: RecyclerView = view.findViewById(R.id.content)
+        val imageView: ImageView = view.findViewById(R.id.iv_conjunto)
 
         init {
             view.setOnClickListener(this)
             view.setOnCreateContextMenuListener(this)
         }
 
-
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
-        }
 
         override fun onClick(v: View) {
             val item = values[adapterPosition]
@@ -75,7 +85,7 @@ class ConjuntosAdapter(var ctx: Context, private val values: MutableList<Conjunt
                 val bundle = Bundle()
                 bundle.putBoolean("edit",true)
                 bundle.putLong("itemId",item.conjuntoId)
-                v.findNavController().navigate(R.id.nav_subirConjunto, bundle)
+                v.findNavController().navigate(R.id.action_nav_misConjuntos_to_nav_subirConjunto, bundle)
                 true
             }
 

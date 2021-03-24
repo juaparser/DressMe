@@ -1,6 +1,7 @@
 package com.juaparser.dressme.ui.verConjunto
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.ArrayAdapter
@@ -41,7 +42,6 @@ class VerConjuntoFragment : Fragment() {
             uiThread{
                 binding.imageConjunto.setImageURI(conjunto.image)
                 binding.textConjuntoName.text = conjunto.name
-                binding.textConjuntoUses.text = conjunto.uses.toString()
 
                 binding.layoutTiempo.adapter = ArrayAdapter(requireContext(), R.layout.menu_item, arrayOf(conjunto.weather?.name))
 
@@ -60,13 +60,13 @@ class VerConjuntoFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val conjuntoId = arguments?.getInt("itemId")
+        val conjuntoId = arguments?.getLong("itemId")
         when(item.itemId) {
             R.id.editItem -> {
                 val bundle = Bundle()
                 bundle.putBoolean("edit",true)
-                bundle.putInt("itemId",conjuntoId!!)
-                findNavController().navigate(R.id.action_nav_misConjuntos_to_nav_verConjunto, bundle)
+                bundle.putLong("itemId",conjuntoId!!)
+                findNavController().navigate(R.id.action_nav_verConjunto_to_nav_subirConjunto, bundle)
             }
             R.id.deleteItem -> {
                 val dialog = MaterialAlertDialogBuilder(requireContext())

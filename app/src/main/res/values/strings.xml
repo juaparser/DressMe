@@ -73,5 +73,6 @@
     <string name="menu_checkbox">Seleccione opciones...</string>
     <string name="edit">Modificar</string>
     <string name="delete">Eliminar</string>
+    <string name="iv_c_conjunto">Imagen conjunto</string>
 
 </resources>

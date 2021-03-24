@@ -37,7 +37,7 @@ class PrendasConjuntoAdapter(var ctx: Context, var conjuntoId: Long, private val
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
         holder.nameView.text = item.name
-        val content = if(item.subCategory == null) "" else item.subCategory
+        val content = if(item.subCategory == null) item.topCategory.name else item.subCategory
         holder.contentView.text = content
         holder.imagePrenda.setImageURI(item.image)
 

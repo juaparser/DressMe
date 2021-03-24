@@ -20,7 +20,6 @@ data class Prenda (
         @ColumnInfo(name = "weather") var weather: Tiempo?,
         @ColumnInfo(name = "creationDate") var creationDate: Date,
         @ColumnInfo(name = "purchaseDate") var purchaseDate: Date?,
-        @ColumnInfo(name = "uses") var uses: Int = 0,
         @ColumnInfo(name = "brand") var brand: String?,
         @ColumnInfo(name = "size") var size: String?,
         @ColumnInfo(name="favorite") var favorite: Boolean

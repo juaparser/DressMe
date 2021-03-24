@@ -10,6 +10,5 @@ data class Conjunto (
     @PrimaryKey(autoGenerate = true) var conjuntoId: Long = 0,
     @ColumnInfo(name = "name") var name : String,
     @ColumnInfo(name = "image") var image: Uri?,
-    @ColumnInfo(name = "uses") var uses: Int,
     @ColumnInfo(name = "weather") var weather: Tiempo?
 )
