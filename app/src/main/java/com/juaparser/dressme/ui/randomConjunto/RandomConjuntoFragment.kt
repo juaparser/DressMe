@@ -33,6 +33,10 @@ class RandomConjuntoFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+        binding.btnReintentar.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
         binding.btnCrear.setOnClickListener {
             findNavController().navigate(R.id.action_nav_generarConjunto_to_nav_subirConjunto)
         }
@@ -41,22 +45,24 @@ class RandomConjuntoFragment : Fragment() {
         val colorList: MutableList<Color> = mutableListOf()
         val weatherList: MutableList<Tiempo> = mutableListOf()
 
-        for (c in DressMeApp.listCheckboxColores) {
-            for (d in Color.values()) {
-                if (c == d.name) {
-                    colorList.add(d)
+        if(!DressMeApp.listCheckboxColores.isNullOrEmpty()) {
+            for (c in DressMeApp.listCheckboxColores) {
+                for (d in Color.values()) {
+                    if (c == d.name) {
+                        colorList.add(d)
+                    }
                 }
             }
         }
-
-        for (c in DressMeApp.listCheckboxTiempo) {
-            for (d in Tiempo.values()) {
-                if (c == d.name) {
-                    weatherList.add(d)
+        if(!DressMeApp.listCheckboxTiempo.isNullOrEmpty()) {
+            for (c in DressMeApp.listCheckboxTiempo) {
+                for (d in Tiempo.values()) {
+                    if (c == d.name) {
+                        weatherList.add(d)
+                    }
                 }
             }
         }
-
         binding.list.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
@@ -67,21 +73,40 @@ class RandomConjuntoFragment : Fragment() {
             var inferior: MutableList<Prenda>? = null
             var zapatos: MutableList<Prenda>? = null
             for (p in prendas) {
-                if (p == TopCategoria.Accesorio.name) {
-                    accesorio = DressMeApp.database.prendaDao()
-                        .getPrendasByFilters(TopCategoria.Accesorio, colorList, weatherList)
-                }
-                if (p == TopCategoria.Superior.name) {
-                    superior = DressMeApp.database.prendaDao()
-                        .getPrendasByFilters(TopCategoria.Superior, colorList, weatherList)
-                }
-                if (p == TopCategoria.Inferior.name) {
-                    inferior = DressMeApp.database.prendaDao()
-                        .getPrendasByFilters(TopCategoria.Inferior, colorList, weatherList)
-                }
-                if (p == TopCategoria.Calzado.name) {
-                    zapatos = DressMeApp.database.prendaDao()
-                        .getPrendasByFilters(TopCategoria.Calzado, colorList, weatherList)
+                if (colorList.isEmpty() && weatherList.isEmpty()) {
+                    if (p == TopCategoria.Accesorio.name) {
+                        accesorio = DressMeApp.database.prendaDao()
+                            .getPrendasByCategory(TopCategoria.Accesorio)
+                    }
+                    if (p == TopCategoria.Superior.name) {
+                        superior = DressMeApp.database.prendaDao()
+                            .getPrendasByCategory(TopCategoria.Superior)
+                    }
+                    if (p == TopCategoria.Inferior.name) {
+                        inferior = DressMeApp.database.prendaDao()
+                            .getPrendasByCategory(TopCategoria.Inferior)
+                    }
+                    if (p == TopCategoria.Calzado.name) {
+                        zapatos = DressMeApp.database.prendaDao()
+                            .getPrendasByCategory(TopCategoria.Calzado)
+                    }
+                } else {
+                    if (p == TopCategoria.Accesorio.name) {
+                        accesorio = DressMeApp.database.prendaDao()
+                            .getPrendasByFilters(TopCategoria.Accesorio, colorList, weatherList)
+                    }
+                    if (p == TopCategoria.Superior.name) {
+                        superior = DressMeApp.database.prendaDao()
+                            .getPrendasByFilters(TopCategoria.Superior, colorList, weatherList)
+                    }
+                    if (p == TopCategoria.Inferior.name) {
+                        inferior = DressMeApp.database.prendaDao()
+                            .getPrendasByFilters(TopCategoria.Inferior, colorList, weatherList)
+                    }
+                    if (p == TopCategoria.Calzado.name) {
+                        zapatos = DressMeApp.database.prendaDao()
+                            .getPrendasByFilters(TopCategoria.Calzado, colorList, weatherList)
+                    }
                 }
             }
             uiThread {
@@ -100,6 +125,12 @@ class RandomConjuntoFragment : Fragment() {
                 }
                 DressMeApp.listPrendas = prendasUi
                 binding.list.adapter = ListAdapter(prendasUi)
+
+                if(prendasUi.isEmpty()) {
+                    binding.layoutSinPrendas.visibility = View.VISIBLE
+                } else {
+                    binding.layoutConPrendas.visibility = View.VISIBLE
+                }
             }
         }
 

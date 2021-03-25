@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
 import com.juaparser.dressme.databinding.FragmentVerConjuntoBinding
@@ -84,6 +85,9 @@ class VerConjuntoFragment : Fragment() {
                                 DressMeApp.database.conjuntoDao().deleteConjunto(conjunto)
                                 uiThread {
                                     findNavController().navigate(R.id.action_nav_verConjunto_to_nav_misConjuntos)
+                                    Snackbar.make(binding.root, "Conjunto ${conjunto.name} eliminado.", Snackbar.LENGTH_LONG)
+                                            .setBackgroundTint(resources.getColor(R.color.reject))
+                                            .show()
                                 }
                             }
                         }

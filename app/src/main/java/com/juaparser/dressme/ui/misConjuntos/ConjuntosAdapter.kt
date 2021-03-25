@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
 import com.juaparser.dressme.database.Conjunto
@@ -27,12 +28,13 @@ import java.io.Serializable
 class ConjuntosAdapter(var ctx: Context, private val values: MutableList<Conjunto>)
     : RecyclerView.Adapter<ConjuntosAdapter.ViewHolder>() {
 
-    private lateinit var prendasList: MutableList<Prenda>
+    private lateinit var parent: ViewGroup
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.fragment_item_conjunto, parent, false)
 
+        this.parent = parent
         view.isLongClickable = true
 
 
@@ -73,7 +75,7 @@ class ConjuntosAdapter(var ctx: Context, private val values: MutableList<Conjunt
             val item = values[adapterPosition]
             val bundle = Bundle()
             bundle.putLong("itemId",item.conjuntoId)
-            v.findNavController().navigate(R.id.nav_verConjunto, bundle)
+            v.findNavController().navigate(R.id.action_nav_misConjuntos_to_nav_verConjunto, bundle)
         }
 
         override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo?) {
@@ -104,6 +106,9 @@ class ConjuntosAdapter(var ctx: Context, private val values: MutableList<Conjunt
 
                                 DressMeApp.database.conjuntoDao().deleteConjunto(item)
                                 uiThread {
+                                    Snackbar.make(parent, "Conjunto ${item.name} eliminado.", Snackbar.LENGTH_LONG)
+                                            .setBackgroundTint(ctx.resources.getColor(R.color.reject))
+                                            .show()
                                     values.remove(item)
                                     this@ConjuntosAdapter.notifyItemRemoved(values.indexOf(item))
                                 }

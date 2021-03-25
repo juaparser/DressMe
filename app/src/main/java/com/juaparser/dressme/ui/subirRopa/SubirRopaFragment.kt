@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.snackbar.Snackbar
 import com.juaparser.dressme.BuildConfig
 import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
@@ -108,10 +109,8 @@ class SubirRopaFragment : Fragment() {
         }
 
         binding.subirPrenda.setOnClickListener {
-            if(subirPrenda()) findNavController().navigate(R.id.nav_armario)
+            if(subirPrenda()) findNavController().navigate(R.id.action_nav_subirRopa_to_nav_armario)
         }
-
-
 
         return binding.root
     }
@@ -157,9 +156,11 @@ class SubirRopaFragment : Fragment() {
                     )
 
                     DressMeApp.database.prendaDao().updatePrenda(prenda)
+                    Snackbar.make(binding.root, "Prenda ${prenda.name} actualizada correctamente.", Snackbar.LENGTH_LONG)
+                            .setBackgroundTint(resources.getColor(R.color.confirm))
+                            .show()
 
                 } else {
-                    Log.e("PAELLA", "ENTRAMOS EN CREAR")
                     if (fileUri == null) {
                         fileUri = Uri.parse("android.resource://" + BuildConfig.APPLICATION_ID + "/" + R.drawable.imagen)
                     }
@@ -179,6 +180,9 @@ class SubirRopaFragment : Fragment() {
                     )
                     DressMeApp.database.prendaDao().addPrenda(prenda)
 
+                    Snackbar.make(binding.root, "Prenda ${prenda.name} subida correctamente.", Snackbar.LENGTH_LONG)
+                            .setBackgroundTint(resources.getColor(R.color.confirm))
+                            .show()
                 }
             }
         } else {

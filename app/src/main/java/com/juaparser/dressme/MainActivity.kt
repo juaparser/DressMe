@@ -2,6 +2,7 @@ package com.juaparser.dressme
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.CompoundButton
@@ -14,6 +15,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.NavController
+import androidx.navigation.get
 import androidx.room.Room
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -22,6 +25,7 @@ import com.juaparser.dressme.database.DressMeDatabase
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
+
+        this.navController = navController
 
         val infoButton : MaterialButton = findViewById(R.id.btn_info)
         infoButton.textAlignment = View.TEXT_ALIGNMENT_TEXT_START
@@ -53,11 +59,27 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        if(navController.graph[R.id.nav_filtrarConjunto].id == navController.currentDestination?.id) {
+            DressMeApp.listCheckboxColores = mutableListOf()
+            DressMeApp.listCheckboxTiempo = mutableListOf()
+            DressMeApp.listCheckboxPrendas = mutableListOf()
+        }
+        if(navController.graph.startDestination == navController.currentDestination?.id) {
+            finish()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     override fun onSupportNavigateUp(): Boolean {
+        if(navController.graph[R.id.nav_filtrarConjunto].id == navController.currentDestination?.id) {
+            DressMeApp.listCheckboxColores = mutableListOf()
+            DressMeApp.listCheckboxTiempo = mutableListOf()
+            DressMeApp.listCheckboxPrendas = mutableListOf()
+        }
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
-
 
 }

@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.android.material.snackbar.Snackbar
 import com.juaparser.dressme.BuildConfig
 import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
@@ -94,7 +95,7 @@ class SubirConjuntoFragment : Fragment() {
                 DressMeApp.listCheckboxTiempo = mutableListOf()
                 DressMeApp.listCheckboxColores = mutableListOf()
                 DressMeApp.listCheckboxPrendas = mutableListOf()
-                findNavController().navigate(R.id.nav_misConjuntos)
+                findNavController().navigate(R.id.action_nav_subirConjunto_to_nav_misConjuntos)
             }
         }
 
@@ -111,7 +112,6 @@ class SubirConjuntoFragment : Fragment() {
         if(checkForm()) {
             doAsync {
                 if (edit) {
-                    Log.e("PAELLA", "ENTRAMOS EN EDIT")
                     val itemId: Long? = arguments?.getLong("itemId")
                     val dbConjunto = DressMeApp.database.conjuntoDao().getConjuntoById(itemId!!)
 
@@ -119,14 +119,12 @@ class SubirConjuntoFragment : Fragment() {
                         fileUri = dbConjunto.image
                     }
 
-                    Log.e("PAELLA", "DB CONJUNTO ES $dbConjunto")
                     val conjunto = Conjunto(
                             conjuntoId = dbConjunto.conjuntoId,
                             name = binding.editNombre.editText?.text.toString(),
                             image = fileUri!!,
                             weather = choosenWeather
                     )
-                    val okok = DressMeApp.database.ConjuntoPrendaDao().getAllCrossRef(dbConjunto.conjuntoId)
 
                     DressMeApp.database.conjuntoDao().updateConjunto(conjunto)
 
@@ -217,6 +215,10 @@ class SubirConjuntoFragment : Fragment() {
                         }
                     }
 
+                    Snackbar.make(binding.root, "Conjunto ${conjunto.name} actualizado correctamente.", Snackbar.LENGTH_LONG)
+                            .setBackgroundTint(resources.getColor(R.color.confirm))
+                            .show()
+
                 } else {
 
                     if (fileUri == null) {
@@ -263,6 +265,10 @@ class SubirConjuntoFragment : Fragment() {
                         val cross = ConjuntoPrendaCrossRef(prendaZapatos.prendaId.toLong(), conjuntoId.toLong())
                         DressMeApp.database.ConjuntoPrendaDao().addPrendaConConjunto(cross)
                     }
+
+                    Snackbar.make(binding.root, "Conjunto ${conjunto.name} subido correctamente.", Snackbar.LENGTH_LONG)
+                            .setBackgroundTint(resources.getColor(R.color.confirm))
+                            .show()
                 }
             }
         } else res = false

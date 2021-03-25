@@ -24,7 +24,7 @@ interface PrendaDao {
     @Query("SELECT * FROM prenda WHERE topCategory LIKE :topCategory AND favorite LIKE 'true'")
     fun getFavoritesPrendasByCategory(topCategory: TopCategoria): MutableList<Prenda>
 
-    @Query("SELECT * FROM prenda WHERE topCategory LIKE :category AND color IN (:colors) AND weather IN (:weathers)")
+    @Query("SELECT * FROM prenda WHERE topCategory LIKE :category AND (color IN (:colors) OR weather IN (:weathers))")
     fun getPrendasByFilters(category: TopCategoria, colors: List<Color>, weathers: List<Tiempo>): MutableList<Prenda>
 
     @Query("SELECT * FROM prenda WHERE subCategory LIKE :category")

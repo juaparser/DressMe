@@ -21,6 +21,7 @@
             android:clickable="true"
             android:src="@drawable/ic_photo"
             app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="?attr/colorPrimaryVariant"
             app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -211,7 +212,7 @@
         <Button
             android:id="@+id/subirPrenda"
             style="?attr/materialButtonStyle"
-            android:backgroundTint="#41AA3A"
+            android:backgroundTint="@color/confirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

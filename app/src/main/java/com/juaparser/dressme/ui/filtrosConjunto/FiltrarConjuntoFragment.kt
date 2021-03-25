@@ -3,9 +3,8 @@ package com.juaparser.dressme.ui.filtrosConjunto
 import android.graphics.text.LineBreaker
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -19,8 +18,10 @@ class FiltrarConjuntoFragment : Fragment() {
 
     private lateinit var binding: FragmentFiltrarConjuntoBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = FragmentFiltrarConjuntoBinding.inflate(layoutInflater)
         val view = binding.root
 
@@ -28,27 +29,70 @@ class FiltrarConjuntoFragment : Fragment() {
             binding.txtTitle.justificationMode = LineBreaker.JUSTIFICATION_MODE_INTER_WORD
         }
 
-        binding.layoutColores.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.layoutColores.adapter = ColorListAdapter(requireContext(), DressMeApp.listCheckboxColores, 1)
+        binding.layoutColores.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        binding.layoutColores.adapter = ColorListAdapter(
+            requireContext(),
+            DressMeApp.listCheckboxColores,
+            1
+        )
 
-        binding.layoutTiempo.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.layoutTiempo.adapter = ColorListAdapter(requireContext(), DressMeApp.listCheckboxTiempo, 2)
+        binding.layoutTiempo.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        binding.layoutTiempo.adapter = ColorListAdapter(
+            requireContext(),
+            DressMeApp.listCheckboxTiempo,
+            2
+        )
 
-        binding.layoutPrenda.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.layoutPrenda.adapter = ColorListAdapter(requireContext(), DressMeApp.listCheckboxPrendas, 0)
+        binding.layoutPrenda.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        binding.layoutPrenda.adapter = ColorListAdapter(
+            requireContext(),
+            DressMeApp.listCheckboxPrendas,
+            0
+        )
 
-        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
+        binding.root.setOnKeyListener { v, keyCode, event ->
+            if(keyCode == KeyEvent.KEYCODE_BACK) {
+                Toast.makeText(
+                    requireContext(),
+                    "Debe seleccionar algún tipo de filtrado.",
+                    Toast.LENGTH_LONG
+                ).show()
                 DressMeApp.listCheckboxColores = mutableListOf()
                 DressMeApp.listCheckboxTiempo = mutableListOf()
                 DressMeApp.listCheckboxPrendas = mutableListOf()
             }
+            true
         }
-        requireActivity().onBackPressedDispatcher.addCallback(callback)
 
         binding.btnGenerar.setOnClickListener{
-
-            findNavController().navigate(R.id.nav_generarConjunto)
+            if(DressMeApp.listCheckboxColores.isEmpty() && DressMeApp.listCheckboxPrendas.isEmpty() &&
+                    DressMeApp.listCheckboxTiempo.isEmpty()){
+                Toast.makeText(
+                    requireContext(),
+                    "Debe seleccionar algún tipo de filtrado.",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else if (DressMeApp.listCheckboxPrendas.isEmpty()) {
+                Toast.makeText(
+                    requireContext(),
+                    "Debe seleccionar alguna prenda a buscar.",
+                    Toast.LENGTH_LONG
+                ).show()
+            }else {
+                findNavController().navigate(R.id.action_nav_filtrarConjunto_to_nav_generarConjunto)
+            }
         }
 
         if(DressMeApp.listCheckboxColores.isNotEmpty()){
@@ -81,6 +125,26 @@ class FiltrarConjuntoFragment : Fragment() {
 
         return view
     }
+
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                Toast.makeText(
+                    requireContext(),
+                    "Debe seleccionar algún tipo de filtrado.",
+                    Toast.LENGTH_LONG
+                ).show()
+                DressMeApp.listCheckboxColores = mutableListOf()
+                DressMeApp.listCheckboxTiempo = mutableListOf()
+                DressMeApp.listCheckboxPrendas = mutableListOf()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 
 
 }

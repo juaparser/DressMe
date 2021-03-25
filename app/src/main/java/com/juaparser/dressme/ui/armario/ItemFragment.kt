@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.ImageButton
+import com.google.android.material.snackbar.Snackbar
 import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
 import com.juaparser.dressme.database.Prenda
@@ -25,7 +26,6 @@ class ItemFragment(var i: Int) : Fragment() {
     private var columnCount = 2
     private lateinit var prendasList: MutableList<Prenda>
     private lateinit var adapter: ListAdapter
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -76,6 +76,7 @@ class ItemFragment(var i: Int) : Fragment() {
             adapter = ListAdapter(requireContext(), prendasList)
             recview.adapter = adapter
             it.visibility = View.INVISIBLE
+            Snackbar.make(view, "Mostrando todas las prendas", Snackbar.LENGTH_LONG).show()
         }
 
         textField.setOnItemClickListener { parent, view1, position, id ->
@@ -86,6 +87,7 @@ class ItemFragment(var i: Int) : Fragment() {
                 uiThread {
                     adapter = ListAdapter(requireContext(), newList)
                     recview.adapter = adapter
+                    Snackbar.make(view, "Mostrando ${onon.name}", Snackbar.LENGTH_LONG).show()
                 }
             }
 

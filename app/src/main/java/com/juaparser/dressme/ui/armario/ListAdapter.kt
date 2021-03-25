@@ -11,6 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
 import com.juaparser.dressme.database.Prenda
@@ -23,9 +24,13 @@ import java.util.*
 class ListAdapter(var ctx: Context, private val values: MutableList<Prenda>)
     : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
+    private lateinit var parent: ViewGroup
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.fragment_item, parent, false)
+
+        this.parent = parent
 
         view.isLongClickable = true
 
@@ -35,7 +40,7 @@ class ListAdapter(var ctx: Context, private val values: MutableList<Prenda>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
         holder.nameView.text = item.name
-        holder.contentView.text = item.subCategory
+        holder.contentView.text = if(item.subCategory.isNullOrBlank()) "" else item.subCategory
         holder.imageView.setImageURI(item.image)
 
         if(item.favorite){
@@ -67,6 +72,7 @@ class ListAdapter(var ctx: Context, private val values: MutableList<Prenda>)
 
                     uiThread {
                         holder.favView.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.ic_fav_fill))
+                        Snackbar.make(parent, "Prenda ${prenda.name} añadida a favoritos.", Snackbar.LENGTH_LONG).show()
                     }
                 }
             }else {
@@ -92,7 +98,7 @@ class ListAdapter(var ctx: Context, private val values: MutableList<Prenda>)
 
                     uiThread {
                         holder.favView.setImageDrawable(ContextCompat.getDrawable(ctx, R.drawable.ic_fav_empty))
-
+                        Snackbar.make(parent, "Prenda ${prenda.name} eliminada de favoritos.", Snackbar.LENGTH_LONG).show()
                     }
                 }
             }
@@ -135,7 +141,7 @@ class ListAdapter(var ctx: Context, private val values: MutableList<Prenda>)
                 val bundle = Bundle()
                 bundle.putBoolean("edit",true)
                 bundle.putInt("itemId",item.prendaId)
-                v.findNavController().navigate(R.id.nav_subirRopa, bundle)
+                v.findNavController().navigate(R.id.action_nav_armario_to_nav_subirRopa, bundle)
                 true
             }
 
@@ -153,6 +159,9 @@ class ListAdapter(var ctx: Context, private val values: MutableList<Prenda>)
                                 DressMeApp.database.ConjuntoPrendaDao().deleteCrossRefPrenda(item.prendaId.toLong())
                                 dao.deletePrenda(item)
                                 uiThread {
+                                    Snackbar.make(parent, "Prenda ${item.name} eliminada.", Snackbar.LENGTH_LONG)
+                                            .setBackgroundTint(ctx.resources.getColor(R.color.reject))
+                                            .show()
                                     values.remove(item)
                                     this@ListAdapter.notifyItemRemoved(values.indexOf(item))
                                 }

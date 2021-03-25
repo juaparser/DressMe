@@ -4,11 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
-import android.widget.AdapterView
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -45,8 +42,11 @@ class ListAdapter(private val values: MutableList<Prenda>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         item = values[position]
         holder.nameView.text = item.name
-        holder.contentView.text = "${item.brand}, talla ${item.size}"
+        holder.contentView.text = if(item.subCategory.isNullOrBlank()) "" else item.subCategory
         holder.imageView.setImageURI(item.image)
+
+        holder.favButton.visibility = View.INVISIBLE
+
 
 
     }
@@ -58,6 +58,7 @@ class ListAdapter(private val values: MutableList<Prenda>)
         val nameView: TextView = view.findViewById(R.id.item_name)
         val contentView: TextView = view.findViewById(R.id.content)
         val imageView: ImageView = view.findViewById(R.id.itemImage)
+        val favButton: ImageButton = view.findViewById(R.id.favButton)
 
     }
 

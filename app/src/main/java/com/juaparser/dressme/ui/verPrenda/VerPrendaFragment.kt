@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
 import com.juaparser.dressme.database.Prenda
@@ -80,7 +81,7 @@ class VerPrendaFragment : Fragment() {
                 val bundle = Bundle()
                 bundle.putBoolean("edit",true)
                 bundle.putInt("itemId",prendaId!!)
-                findNavController().navigate(R.id.nav_subirRopa, bundle)
+                findNavController().navigate(R.id.action_nav_verPrenda_to_nav_subirRopa, bundle)
             }
             R.id.deleteItem -> {
                 val dialog = MaterialAlertDialogBuilder(requireContext())
@@ -98,6 +99,9 @@ class VerPrendaFragment : Fragment() {
                                 dao.deletePrenda(prenda)
                                 uiThread {
                                     findNavController().navigate(R.id.action_nav_verPrenda_to_nav_armario)
+                                    Snackbar.make(binding.root, "Prenda ${prenda.name} eliminada.", Snackbar.LENGTH_LONG)
+                                            .setBackgroundTint(resources.getColor(R.color.reject))
+                                            .show()
                                 }
                             }
                         }

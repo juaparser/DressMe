@@ -74,5 +74,6 @@
     <string name="edit">Modificar</string>
     <string name="delete">Eliminar</string>
     <string name="iv_c_conjunto">Imagen conjunto</string>
+    <string name="txt_no_prenda">No se encontraron prendas con los filtros indicados</string>
 
 </resources>

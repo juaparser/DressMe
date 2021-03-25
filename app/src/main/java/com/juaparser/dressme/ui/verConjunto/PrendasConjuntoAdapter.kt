@@ -13,6 +13,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
 import com.juaparser.dressme.database.Conjunto
@@ -65,7 +66,7 @@ class PrendasConjuntoAdapter(var ctx: Context, var conjuntoId: Long, private val
             view.setOnClickListener {
                 val bundle = Bundle()
                 bundle.putInt("itemId",values[adapterPosition].prendaId)
-                it.findNavController().navigate(R.id.nav_verPrenda, bundle)
+                it.findNavController().navigate(R.id.action_nav_verConjunto_to_nav_verPrenda, bundle)
             }
 
             quitarPrenda.setOnClickListener {
@@ -79,6 +80,7 @@ class PrendasConjuntoAdapter(var ctx: Context, var conjuntoId: Long, private val
                             val pos = values.indexOf(prenda)
                             values.remove(prenda)
                             this@PrendasConjuntoAdapter.notifyItemRemoved(pos)
+                            Snackbar.make(view, "Eliminada prenda ${prenda.name} del conjunto.", Snackbar.LENGTH_LONG).show()
                         }
                     }
                 }

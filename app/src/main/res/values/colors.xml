@@ -15,4 +15,9 @@
 
     <color name="themeColor">#FF000000</color>
 
+    <color name="confirm">#00B865</color>
+    <color name="reject">#E23C47</color>
+
+    <color name="brown">#928779</color>
+
 </resources>
