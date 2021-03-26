@@ -44,8 +44,8 @@
         Comienza a crear tus conjuntos.</string>
     <string name="title_filter_conjunto">Generación de un conjunto aleatorio</string>
     <string name="confirmar_colores">Confirmar colores</string>
-    <string name="confirmar_categorias">Confirmar colores</string>
-    <string name="confirmar_tiempo">Confirmar colores</string>
+    <string name="confirmar_categorias">Confirmar categorías</string>
+    <string name="confirmar_tiempo">Confirmar tiempo</string>
     <string name="title_random">El conjunto nuevo es…</string>
     <string name="txt_inicio_generar_conjunto">Generar conjunto aleatorio</string>
     <string name="txt_inicio_generar">Generar</string>
@@ -75,5 +75,10 @@
     <string name="delete">Eliminar</string>
     <string name="iv_c_conjunto">Imagen conjunto</string>
     <string name="txt_no_prenda">No se encontraron prendas con los filtros indicados</string>
+    <string name="txt_prendas">Prendas:</string>
+    <string name="primera_prenda">¡Añade tu primera prenda!</string>
+    <string name="btn_primera_prenda">Añadir primera prenda</string>
+    <string name="txt_empty_conjuntos">Parece que aún no tienes conjuntos... \n ¡Prueba a crear uno nuevo pulsando en el botón inferior!</string>
+    <string name="txt_empty_prendas">Parece que no has añadido prendas en esta categoría. \n ¡Empieza pulsando en el botón inferior!</string>
 
 </resources>

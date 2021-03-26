@@ -51,7 +51,7 @@ class ColorAdapter(context: Context, list: Array<com.juaparser.dressme.database.
            "Rosa" -> DrawableCompat.setTint(wrappedDrawable, context.resources.getColor(R.color.rose))
        }
 
-        image.setImageDrawable(wrappedDrawable)
+        image.setImageDrawable(ResourcesCompat.getDrawable(context.resources, R.drawable.ic_color_circle, null))
 
         val name = listItem.findViewById(R.id.material_sample_text) as TextView
         name.text = currentColor.name

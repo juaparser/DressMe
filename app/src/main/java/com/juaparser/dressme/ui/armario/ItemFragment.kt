@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.ImageButton
+import android.widget.TextView
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.snackbar.Snackbar
 import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R

@@ -41,6 +41,11 @@ class MisConjuntosFragment : Fragment() {
             uiThread {
                 adapter = ConjuntosAdapter(requireContext(), conjuntos)
                 binding.list.adapter = adapter
+
+                if(conjuntos.isNullOrEmpty()){
+                    binding.list.visibility = View.INVISIBLE
+                    binding.txtEmptyConjuntos.visibility = View.VISIBLE
+                }
             }
         }
 

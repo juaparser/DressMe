@@ -121,7 +121,7 @@ class SubirRopaFragment : Fragment() {
         var tiempo = binding.dropdownTextTiempo.text.toString()
         var choosenCategory = TopCategoria.Inferior
         var choosenColor = Color.Rojo
-        var choosenWeather = Tiempo.Soleado
+        var choosenWeather: Tiempo? = null
         var res = true
 
         for(v in TopCategoria.values()) if(v.name == category) choosenCategory = v

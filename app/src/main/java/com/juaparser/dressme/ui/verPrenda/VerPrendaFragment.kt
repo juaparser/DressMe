@@ -48,18 +48,21 @@ class VerPrendaFragment : Fragment() {
                 binding.textRopaName.text = prenda.name
                 binding.textRopaCategoria.text = if(prenda.subCategory?.isNotEmpty() == true) prenda.subCategory else prenda.topCategory.name
 
-                binding.textRopaMarca.text = prenda.brand
-                binding.textRopaTalla.text = prenda.size
+                binding.textRopaMarca.text = if(!prenda.brand.isNullOrBlank()) prenda.brand else "Sin definir"
+                binding.textRopaTalla.text = if(!prenda.size.isNullOrBlank()) prenda.brand else "Sin definir"
 
                 val colorAdapter = ColorListAdapter(requireContext(), mutableListOf(prenda.color))
                 binding.layoutColores.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 binding.layoutColores.adapter = colorAdapter
 
-                binding.layoutTiempo.adapter = ArrayAdapter(requireContext(), R.layout.menu_item, arrayOf(prenda.weather?.name))
+                if (prenda.weather != null)
+                    binding.layoutTiempo.adapter = ArrayAdapter(requireContext(), R.layout.menu_item, arrayOf(prenda.weather?.name))
+                else
+                    binding.layoutTiempo.adapter = ArrayAdapter(requireContext(), R.layout.menu_item, arrayOf("Sin definir"))
 
                 val dateFormat = DateFormat.getDateInstance()
                 if(prenda.purchaseDate == null) {
-                    binding.textRopaFechaCompra.text = "Sin información"
+                    binding.textRopaFechaCompra.text = "Sin definir"
                 }else binding.textRopaFechaCompra.text = dateFormat.format(prenda.purchaseDate!!)
                 binding.textRopaFechaCreacion.text = dateFormat.format(prenda.creationDate)
 

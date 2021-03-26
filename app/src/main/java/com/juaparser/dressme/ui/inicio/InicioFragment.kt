@@ -10,8 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
+import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
 import com.juaparser.dressme.databinding.FragmentInicioBinding
+import org.jetbrains.anko.doAsync
 
 class InicioFragment : Fragment() {
 
@@ -27,7 +29,18 @@ class InicioFragment : Fragment() {
         }
 
         binding.btnGenerarConjunto.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_home_to_nav_filtrarConjunto)
+            if(binding.btnGenerarConjunto.text == getString(R.string.btn_primera_prenda))
+                findNavController().navigate(R.id.action_nav_home_to_nav_subirRopa)
+            else
+                findNavController().navigate(R.id.action_nav_home_to_nav_filtrarConjunto)
+        }
+
+        doAsync {
+            val prendas = DressMeApp.database.prendaDao().getAllPrendas()
+            if(prendas.isNullOrEmpty()){
+                binding.txtGenerarConjunto.text = getString(R.string.primera_prenda)
+                binding.btnGenerarConjunto.text = getString(R.string.btn_primera_prenda)
+            }
         }
 
         return view

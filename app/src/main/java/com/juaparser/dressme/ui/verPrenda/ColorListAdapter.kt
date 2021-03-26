@@ -42,7 +42,7 @@ class ColorListAdapter(var ctx: Context, private val values: MutableList<Color>)
             "Rosa" -> DrawableCompat.setTint(wrappedDrawable, ctx.resources.getColor(R.color.rose))
         }
 
-        holder.imageView.setImageDrawable(wrappedDrawable)
+        holder.imageView.setImageDrawable(ResourcesCompat.getDrawable(ctx.resources, R.drawable.ic_color_circle, null))
 
     }
 

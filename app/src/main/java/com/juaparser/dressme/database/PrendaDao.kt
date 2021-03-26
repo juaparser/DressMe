@@ -15,6 +15,9 @@ interface PrendaDao {
     @Query("SELECT * FROM prenda WHERE prendaId LIKE :id")
     fun getPrendaById(id: Int): Prenda
 
+    @Query("SELECT * FROM prenda ORDER BY creationDate")
+    fun getPrendasDate(): MutableList<Prenda>
+
     @Query("SELECT * FROM prenda WHERE name LIKE :name")
     fun getPrendaByName(name: String): Prenda
 

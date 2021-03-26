@@ -31,7 +31,7 @@ class FiltrarConjuntoFragment : Fragment() {
 
         binding.layoutColores.layoutManager = LinearLayoutManager(
             requireContext(),
-            LinearLayoutManager.HORIZONTAL,
+            LinearLayoutManager.VERTICAL,
             false
         )
         binding.layoutColores.adapter = ColorListAdapter(
@@ -42,7 +42,7 @@ class FiltrarConjuntoFragment : Fragment() {
 
         binding.layoutTiempo.layoutManager = LinearLayoutManager(
             requireContext(),
-            LinearLayoutManager.HORIZONTAL,
+            LinearLayoutManager.VERTICAL,
             false
         )
         binding.layoutTiempo.adapter = ColorListAdapter(
@@ -53,7 +53,7 @@ class FiltrarConjuntoFragment : Fragment() {
 
         binding.layoutPrenda.layoutManager = LinearLayoutManager(
             requireContext(),
-            LinearLayoutManager.HORIZONTAL,
+            LinearLayoutManager.VERTICAL,
             false
         )
         binding.layoutPrenda.adapter = ColorListAdapter(
@@ -93,16 +93,6 @@ class FiltrarConjuntoFragment : Fragment() {
             }else {
                 findNavController().navigate(R.id.action_nav_filtrarConjunto_to_nav_generarConjunto)
             }
-        }
-
-        if(DressMeApp.listCheckboxColores.isNotEmpty()){
-            binding.layoutColores.visibility = View.VISIBLE
-        }
-        if(DressMeApp.listCheckboxTiempo.isNotEmpty()){
-            binding.layoutTiempo.visibility = View.VISIBLE
-        }
-        if(DressMeApp.listCheckboxPrendas.isNotEmpty()){
-            binding.layoutPrenda.visibility = View.VISIBLE
         }
 
         binding.btnPrenda.setOnClickListener{

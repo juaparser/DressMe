@@ -18,6 +18,18 @@
         tools:context=".ui.misConjuntos.MisConjuntosFragment"
         tools:listitem="@layout/fragment_item_conjunto" />
 
+    <TextView
+        android:id="@+id/txt_empty_conjuntos"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:visibility="invisible"
+        android:text="@string/txt_empty_conjuntos"
+        android:layout_height="wrap_content"/>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_subirConjunto"

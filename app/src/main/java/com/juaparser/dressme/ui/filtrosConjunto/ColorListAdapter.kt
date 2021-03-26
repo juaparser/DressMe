@@ -9,15 +9,16 @@ import android.widget.ImageView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.juaparser.dressme.R
-import com.juaparser.dressme.database.Color
 
 
 class ColorListAdapter(var ctx: Context, private val values: MutableList<String>, var type: Int)
     : RecyclerView.Adapter<ColorListAdapter.ViewHolder>() {
 
+    private lateinit var view: View
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
+         view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_color, parent, false)
 
         return ViewHolder(view)
@@ -59,6 +60,11 @@ class ColorListAdapter(var ctx: Context, private val values: MutableList<String>
             val unwrappedDrawable = ResourcesCompat.getDrawable(ctx.resources, R.drawable.ic_color, null)
             val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
 
+            var params = view.layoutParams as RecyclerView.LayoutParams
+
+            params.setMargins(4,0,4,0)
+            view.layoutParams = params
+
             when (item) {
                 "Rojo" -> DrawableCompat.setTint(wrappedDrawable, android.graphics.Color.RED)
                 "Verde" -> DrawableCompat.setTint(wrappedDrawable, android.graphics.Color.GREEN)
@@ -71,7 +77,7 @@ class ColorListAdapter(var ctx: Context, private val values: MutableList<String>
                 "Gris" -> DrawableCompat.setTint(wrappedDrawable, android.graphics.Color.GRAY)
                 "Rosa" -> DrawableCompat.setTint(wrappedDrawable, ctx.resources.getColor(R.color.rose))
             }
-            holder.imageView.setImageDrawable(wrappedDrawable)
+            holder.imageView.setImageDrawable(ResourcesCompat.getDrawable(ctx.resources, R.drawable.ic_color_circle, null))
         }
 
 

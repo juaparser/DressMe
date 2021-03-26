@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textSize="28sp"
         android:textColor="@color/themeColor"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:gravity="center"
@@ -42,26 +42,12 @@
         android:textColor="@color/themeColor"
         android:text="Colores "/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/layout_colores"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="8dp"
-        android:textAlignment="center"
-        android:backgroundTint="@color/gray"
-        android:visibility="invisible"
-        android:background="#D39F9696"
-        app:layout_constraintTop_toBottomOf="@id/btn_colores"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_tiempo"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/layout_colores"
+        app:layout_constraintTop_toBottomOf="@id/btn_colores"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
@@ -76,25 +62,12 @@
         android:textColor="@color/themeColor"
         android:text="Tiempo "/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/layout_tiempo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="8dp"
-        android:textAlignment="center"
-        android:backgroundTint="@color/gray"
-        android:visibility="invisible"
-        android:background="#D39F9696"
-        app:layout_constraintTop_toBottomOf="@id/btn_tiempo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_prenda"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/layout_tiempo"
+        app:layout_constraintTop_toBottomOf="@id/btn_tiempo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
@@ -109,30 +82,97 @@
         android:textColor="@color/themeColor"
         android:text="Prendas "/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/layout_prenda"
+    <LinearLayout
+        android:id="@+id/layouts_filter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="8dp"
-        android:textAlignment="center"
-        android:backgroundTint="@color/gray"
-        android:visibility="invisible"
-        android:background="#D39F9696"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/btn_prenda"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+        android:weightSum="3"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/ropa_view_colores"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/layout_colores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/ropa_view_tiempo"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/layout_tiempo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/txt_prendas"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/layout_prenda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:textAlignment="center"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_generar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/layout_prenda"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="16dp"
         android:backgroundTint="@color/confirm"
         style="?attr/materialButtonStyle"
         android:textColor="@color/themeColor"
