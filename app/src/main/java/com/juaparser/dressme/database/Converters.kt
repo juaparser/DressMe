@@ -1,12 +1,8 @@
 package com.juaparser.dressme.database
 
 import android.net.Uri
-import android.renderscript.RenderScript
 import androidx.room.TypeConverter
-import com.juaparser.dressme.database.enum.Accesorio
-import com.juaparser.dressme.database.enum.Calzado
-import com.juaparser.dressme.database.enum.Inferior
-import com.juaparser.dressme.database.enum.Superior
+import com.juaparser.dressme.database.enums.*
 import java.util.*
 
 class Converters {

@@ -1,8 +1,9 @@
 package com.juaparser.dressme.database
 
 import androidx.room.*
-import com.juaparser.dressme.database.Prenda
-import com.juaparser.dressme.database.TopCategoria
+import com.juaparser.dressme.database.enums.Color
+import com.juaparser.dressme.database.enums.Tiempo
+import com.juaparser.dressme.database.enums.TopCategoria
 
 @Dao
 interface PrendaDao {
@@ -15,7 +16,7 @@ interface PrendaDao {
     @Query("SELECT * FROM prenda WHERE prendaId LIKE :id")
     fun getPrendaById(id: Int): Prenda
 
-    @Query("SELECT * FROM prenda ORDER BY creationDate")
+    @Query("SELECT * FROM prenda ORDER BY creationDate DESC")
     fun getPrendasDate(): MutableList<Prenda>
 
     @Query("SELECT * FROM prenda WHERE name LIKE :name")

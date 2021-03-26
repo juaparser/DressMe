@@ -19,6 +19,14 @@
             app:popExitAnim="@anim/fragment_fade_exit"
             app:popUpTo="@id/nav_home" />
         <action
+            android:id="@+id/action_nav_home_to_nav_verPrenda"
+            app:destination="@id/nav_verPrenda"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
+            app:popUpTo="@id/nav_home" />
+        <action
             android:id="@+id/action_nav_home_to_nav_subirRopa"
             app:destination="@id/nav_subirRopa"
             app:enterAnim="@anim/fragment_fade_enter"
@@ -30,9 +38,9 @@
 
     <fragment
         android:id="@+id/nav_generarConjunto"
-        android:name="com.juaparser.dressme.ui.randomConjunto.RandomConjuntoFragment"
+        android:name="com.juaparser.dressme.ui.conjunto.generarConjunto.GenerarConjuntoFragment"
         android:label="@string/menu_generarConjunto"
-        tools:layout="@layout/fragment_random_conjunto" >
+        tools:layout="@layout/fragment_generar_conjunto" >
 
         <action
             android:id="@+id/action_nav_generarConjunto_to_nav_subirConjunto"
@@ -46,7 +54,7 @@
 
     <fragment
         android:id="@+id/nav_filtrarConjunto"
-        android:name="com.juaparser.dressme.ui.filtrosConjunto.FiltrarConjuntoFragment"
+        android:name="com.juaparser.dressme.ui.conjunto.filtrosConjunto.FiltrarConjuntoFragment"
         android:label="@string/menu_filtrarConjunto"
         tools:layout="@layout/fragment_filtrar_conjunto" >
         <action
@@ -69,13 +77,13 @@
 
     <fragment
         android:id="@+id/nav_checkboxFragment"
-        android:name="com.juaparser.dressme.ui.filtrosConjunto.CheckboxFragment"
+        android:name="com.juaparser.dressme.ui.conjunto.filtrosConjunto.CheckboxFragment"
         android:label="@string/menu_checkbox"
         tools:layout="@layout/fragment_checkbox" />
 
     <fragment
         android:id="@+id/nav_armario"
-        android:name="com.juaparser.dressme.ui.armario.ArmarioFragment"
+        android:name="com.juaparser.dressme.ui.prenda.armario.ArmarioFragment"
         android:label="@string/menu_armario"
         tools:layout="@layout/fragment_armario" >
         <action
@@ -98,9 +106,9 @@
 
     <fragment
         android:id="@+id/nav_subirRopa"
-        android:name="com.juaparser.dressme.ui.subirRopa.SubirRopaFragment"
+        android:name="com.juaparser.dressme.ui.prenda.subirPrenda.SubirPrendaFragment"
         android:label="@string/menu_subirRopa"
-        tools:layout="@layout/fragment_subir_ropa" >
+        tools:layout="@layout/fragment_subir_prenda" >
         <action
             android:id="@+id/action_nav_subirRopa_to_nav_armario"
             app:enterAnim="@anim/fragment_fade_enter"
@@ -113,7 +121,7 @@
 
     <fragment
         android:id="@+id/nav_verPrenda"
-        android:name="com.juaparser.dressme.ui.verPrenda.VerPrendaFragment"
+        android:name="com.juaparser.dressme.ui.prenda.verPrenda.VerPrendaFragment"
         android:label="@string/menu_verPrenda"
         tools:layout="@layout/fragment_ver_prenda" >
         <action
@@ -134,7 +142,7 @@
 
     <fragment
         android:id="@+id/nav_misConjuntos"
-        android:name="com.juaparser.dressme.ui.misConjuntos.MisConjuntosFragment"
+        android:name="com.juaparser.dressme.ui.conjunto.misConjuntos.MisConjuntosFragment"
         android:label="@string/menu_misConjuntos"
         tools:layout="@layout/fragment_mis_conjuntos" >
         <action
@@ -157,7 +165,7 @@
 
     <fragment
         android:id="@+id/nav_subirConjunto"
-        android:name="com.juaparser.dressme.ui.subirConjunto.SubirConjuntoFragment"
+        android:name="com.juaparser.dressme.ui.conjunto.subirConjunto.SubirConjuntoFragment"
         android:label="@string/menu_subirConjunto"
         tools:layout="@layout/fragment_subir_conjunto" >
         <action
@@ -172,7 +180,7 @@
 
     <fragment
         android:id="@+id/nav_verConjunto"
-        android:name="com.juaparser.dressme.ui.verConjunto.VerConjuntoFragment"
+        android:name="com.juaparser.dressme.ui.conjunto.verConjunto.VerConjuntoFragment"
         android:label="@string/menu_verConjunto"
         tools:layout="@layout/fragment_ver_conjunto" >
         <action

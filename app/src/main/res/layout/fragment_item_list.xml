@@ -58,7 +58,7 @@
     android:layout_marginRight="8dp"
     app:spanCount="2"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".ui.armario.ItemFragment"
+    tools:context=".ui.prenda.armario.ItemFragment"
     tools:listitem="@layout/fragment_item" />
 
 </LinearLayout>

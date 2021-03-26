@@ -80,5 +80,6 @@
     <string name="btn_primera_prenda">Añadir primera prenda</string>
     <string name="txt_empty_conjuntos">Parece que aún no tienes conjuntos... \n ¡Prueba a crear uno nuevo pulsando en el botón inferior!</string>
     <string name="txt_empty_prendas">Parece que no has añadido prendas en esta categoría. \n ¡Empieza pulsando en el botón inferior!</string>
+    <string name="prendas_recientes">Prendas más recientes:</string>
 
 </resources>

@@ -1,12 +1,12 @@
 package com.juaparser.dressme.database
 
-import android.graphics.Bitmap
 import android.net.Uri
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.serialization.Contextual
-import java.io.Serializable
+import com.juaparser.dressme.database.enums.Color
+import com.juaparser.dressme.database.enums.Tiempo
+import com.juaparser.dressme.database.enums.TopCategoria
 import java.util.*
 
 @Entity(tableName = "prenda")
