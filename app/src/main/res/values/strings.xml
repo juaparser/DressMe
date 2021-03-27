@@ -81,5 +81,33 @@
     <string name="txt_empty_conjuntos">Parece que aún no tienes conjuntos... \n ¡Prueba a crear uno nuevo pulsando en el botón inferior!</string>
     <string name="txt_empty_prendas">Parece que no has añadido prendas en esta categoría. \n ¡Empieza pulsando en el botón inferior!</string>
     <string name="prendas_recientes">Prendas más recientes:</string>
+    <string name="title_activity_onboarding">OnboardingActivity</string>
+
+    <string name="onboarding_welcome">
+        ¡Gracias por descargar DressMe! \n
+        Podrás almacenar tu ropa y crear conjuntos.
+
+        Desliza hacia la izquierda para comenzar el tutorial,
+        o pulsa en omitir para empezar a usar la aplicación.
+
+    </string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="onboarding_armario_1">En tu armario, tendrás la ropa dividida en cuatro categorías:</string>
+    <string name="onbarding_accesorio">Accesorio</string>
+    <string name="onbarding_superior">Superior</string>
+    <string name="onbarding_inferior">Inferior</string>
+    <string name="onbarding_calzado">Calzado</string>
+    <string name="onboarding_armario_2">Podrás añadir información de las mismas, así como asignarles un color y el tiempo en el que te gusta vestirla.</string>
+    <string name="onboarding_armario_3">¡Pulsa en el botón con este símbolo en el armario para subir tus prendas!</string>
+    <string name="onboarding_conjuntos_1">¡Crea tus propios conjuntos de ropa para tenerlos a mano!</string>
+    <string name="onboarding_conjuntos_2">¡Podrás ver fácilmente cuales son las prendas que lo componen!</string>
+    <string name="onboarding_conjuntos_3">Al igual que con las prendas, pulsa este botón en la lista de mis conjuntos para agregar uno nuevo.</string>
+    <string name="onboarding_generar_1">Y lo mejor de todo... ¡Podrás generar tu propio conjunto de forma aleatoria con las prendas que tengas subidas!</string>
+    <string name="onboarding_generar_2">Así que si un día no sabes que ponerte y probar una combinación nueva... ¡Este es tu sitio!</string>
+    <string name="onboarding_generar_3">Y ahora, es momento de empezar a usar la aplicación. \n ¡Que la disfrutes!</string>
 
 </resources>
