@@ -3,6 +3,7 @@ package com.juaparser.dressme.ui.prenda.subirPrenda
 import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,10 +53,12 @@ class SubirPrendaFragment : Fragment() {
             datePicker.show(requireFragmentManager(), "tag")
         }
 
+        var tiempos = Tiempo.values().toMutableList()
+        tiempos.remove(Tiempo.Indefinido)
 
         val categoryAdapter = ArrayAdapter(requireContext(), R.layout.material_sample_item, TopCategoria.values())
         val colorAdapter = ColorAdapter(requireContext(), Color.values())
-        val tiempoAdapter = ArrayAdapter(requireContext(), R.layout.material_sample_item, Tiempo.values())
+        val tiempoAdapter = ArrayAdapter(requireContext(), R.layout.material_sample_item, tiempos)
 
         binding.dropdownTextCategoria.setAdapter(categoryAdapter)
         binding.dropdownTextColores.setAdapter(colorAdapter)
@@ -116,12 +119,16 @@ class SubirPrendaFragment : Fragment() {
         var tiempo = binding.dropdownTextTiempo.text.toString()
         var choosenCategory = TopCategoria.Inferior
         var choosenColor = Color.Rojo
-        var choosenWeather: Tiempo? = null
+        var choosenWeather = Tiempo.Indefinido
         var res = true
+
+        Log.e("SORATA", "EL DROPDOWN ES $tiempo")
 
         for(v in TopCategoria.values()) if(v.name == category) choosenCategory = v
         for(v in Color.values()) if(v.name == color) choosenColor = v
         for(v in Tiempo.values()) if(v.name == tiempo) choosenWeather = v
+
+        Log.e("SORATA", "EL TIEMPO ELEGIDO ES $choosenWeather")
 
         if(checkForm()) {
             doAsync {
@@ -173,7 +180,13 @@ class SubirPrendaFragment : Fragment() {
                             size = binding.editTalla.editText?.text.toString(),
                             favorite = false
                     )
+
+                    Log.e("SORATA", "EL TIEMPO EN LA PRENDA ES ${prenda.weather} CON SUBCATEGORIA ${prenda.subCategory}")
+
                     DressMeApp.database.prendaDao().addPrenda(prenda)
+
+                    Log.e("SORATA", "PRENDA SUBIDA")
+
 
                     Snackbar.make(binding.root, "Prenda ${prenda.name} subida correctamente.", Snackbar.LENGTH_LONG)
                             .setBackgroundTint(resources.getColor(R.color.confirm))

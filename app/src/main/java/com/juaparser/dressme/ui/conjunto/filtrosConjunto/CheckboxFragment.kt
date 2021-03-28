@@ -50,8 +50,11 @@ class CheckboxFragment : Fragment() {
 
             }
             2 -> {
+                var tiempos = Tiempo.values().toMutableList()
+                tiempos.remove(Tiempo.Indefinido)
+
                 binding.listCheckbox.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.listCheckbox.adapter = CheckboxAdapter(null, null, Tiempo.values())
+                binding.listCheckbox.adapter = CheckboxAdapter(null, null, tiempos.toTypedArray())
                 binding.btnConfirmarColores.text = requireContext().resources.getString(R.string.confirmar_tiempo)
             }
         }

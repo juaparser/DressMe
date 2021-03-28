@@ -39,7 +39,11 @@ class SubirConjuntoFragment : Fragment() {
         binding = FragmentSubirConjuntoBinding.inflate(layoutInflater)
         val view = binding.root
 
-        val tiempoAdapter = ArrayAdapter(requireContext(), R.layout.material_sample_item, Tiempo.values())
+        var tiempos = Tiempo.values().toMutableList()
+
+        tiempos.remove(Tiempo.Indefinido)
+
+        val tiempoAdapter = ArrayAdapter(requireContext(), R.layout.material_sample_item, tiempos)
 
         binding.dropdownTextTiempo.setAdapter(tiempoAdapter)
 
@@ -102,7 +106,7 @@ class SubirConjuntoFragment : Fragment() {
 
     private fun subirConjunto(): Boolean {
         var tiempo = binding.dropdownTextTiempo.text.toString()
-        var choosenWeather = Tiempo.Soleado
+        var choosenWeather = Tiempo.Indefinido
         var res = true
 
         for(v in Tiempo.values()) if(v.name == tiempo) choosenWeather = v
