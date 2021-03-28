@@ -101,7 +101,6 @@ class SubirPrendaFragment : Fragment() {
                             ImagePicker.RESULT_ERROR -> {
                                 Toast.makeText(context, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
                             }
-                            else -> Toast.makeText(context, "Tarea cancelada", Toast.LENGTH_SHORT).show()
                         }
                     }
         }
@@ -122,13 +121,10 @@ class SubirPrendaFragment : Fragment() {
         var choosenWeather = Tiempo.Indefinido
         var res = true
 
-        Log.e("SORATA", "EL DROPDOWN ES $tiempo")
-
         for(v in TopCategoria.values()) if(v.name == category) choosenCategory = v
         for(v in Color.values()) if(v.name == color) choosenColor = v
         for(v in Tiempo.values()) if(v.name == tiempo) choosenWeather = v
 
-        Log.e("SORATA", "EL TIEMPO ELEGIDO ES $choosenWeather")
 
         if(checkForm()) {
             doAsync {
@@ -181,12 +177,7 @@ class SubirPrendaFragment : Fragment() {
                             favorite = false
                     )
 
-                    Log.e("SORATA", "EL TIEMPO EN LA PRENDA ES ${prenda.weather} CON SUBCATEGORIA ${prenda.subCategory}")
-
                     DressMeApp.database.prendaDao().addPrenda(prenda)
-
-                    Log.e("SORATA", "PRENDA SUBIDA")
-
 
                     Snackbar.make(binding.root, "Prenda ${prenda.name} subida correctamente.", Snackbar.LENGTH_LONG)
                             .setBackgroundTint(resources.getColor(R.color.confirm))
