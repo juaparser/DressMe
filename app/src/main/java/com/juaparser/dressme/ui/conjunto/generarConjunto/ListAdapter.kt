@@ -8,6 +8,11 @@ import androidx.navigation.findNavController
 import com.juaparser.dressme.R
 import com.juaparser.dressme.database.Prenda
 
+/*
+*
+* Adaptador para mostrar las prendas del conjunto aleatorio
+*
+ */
 
 class ListAdapter(private val values: MutableList<Prenda>)
     : RecyclerView.Adapter<ListAdapter.ViewHolder>() {

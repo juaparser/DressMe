@@ -7,6 +7,12 @@ import androidx.viewpager.widget.ViewPager
 import com.juaparser.dressme.MainActivity
 import com.juaparser.dressme.R
 
+/*
+*
+* Actividad para mostrar el tutorial
+*
+ */
+
 class OnboardingActivity : AppCompatActivity() {
     lateinit var viewPager: ViewPager
     lateinit var adapter: SlideViewPagerAdapter

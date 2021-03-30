@@ -12,6 +12,11 @@ import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
 import com.juaparser.dressme.databinding.FragmentFiltrarConjuntoBinding
 
+/*
+*
+* Fragmento para los filtros de generar un conjunto aleatorio
+*
+ */
 
 class FiltrarConjuntoFragment : Fragment() {
 

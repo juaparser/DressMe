@@ -11,6 +11,11 @@ import androidx.core.graphics.drawable.DrawableCompat
 import com.juaparser.dressme.R
 import com.juaparser.dressme.database.enums.Color
 
+/*
+*
+* Adaptador para ver la lista de colores de la prenda
+*
+ */
 
 class ColorListAdapter(var ctx: Context, private val values: MutableList<Color>)
     : RecyclerView.Adapter<ColorListAdapter.ViewHolder>() {

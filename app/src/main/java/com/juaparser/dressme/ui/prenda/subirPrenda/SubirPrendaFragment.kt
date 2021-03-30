@@ -25,6 +25,11 @@ import org.jetbrains.anko.uiThread
 import java.text.DateFormat
 import java.util.*
 
+/*
+*
+* Fragmento para subir una nueva prenda o editarla
+*
+ */
 
 class SubirPrendaFragment : Fragment() {
 

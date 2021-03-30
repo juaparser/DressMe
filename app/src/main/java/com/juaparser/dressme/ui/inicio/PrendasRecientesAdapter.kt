@@ -22,6 +22,11 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.io.Serializable
 
+/*
+*
+* Adaptador para mostrar la lista de las tres prendas más recientes añadidas
+*
+ */
 
 class PrendasRecientesAdapter(var ctx: Context, private val values: MutableList<Prenda>)
     : RecyclerView.Adapter<PrendasRecientesAdapter.ViewHolder>() {

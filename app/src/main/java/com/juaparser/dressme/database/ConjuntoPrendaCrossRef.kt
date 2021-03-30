@@ -2,6 +2,12 @@ package com.juaparser.dressme.database
 
 import androidx.room.*
 
+/*
+*
+* Entidades referencias cruzadas entre Prenda y Conjunto
+*
+ */
+
 @Entity(primaryKeys = ["prenda_id", "conjunto_id"])
 data class ConjuntoPrendaCrossRef (
         @ColumnInfo(name = "prenda_id") var prenda_id: Long,

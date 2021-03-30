@@ -16,6 +16,11 @@ import com.juaparser.dressme.database.Conjunto
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
+/*
+*
+* Adaptador para mostrar la lista de conjuntos del usuario
+*
+ */
 
 class ConjuntosAdapter(var ctx: Context, private val values: MutableList<Conjunto>)
     : RecyclerView.Adapter<ConjuntosAdapter.ViewHolder>() {

@@ -17,6 +17,11 @@ import com.juaparser.dressme.databinding.FragmentGenerarConjuntoBinding
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
+/*
+*
+* Fragmento para mostrar el conjunto aleatorio elegido
+*
+ */
 
 class GenerarConjuntoFragment : Fragment() {
 

@@ -16,6 +16,12 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.text.DateFormat
 
+/*
+*
+* Fragmento para ver más detalles de una prenda
+*
+ */
+
 class VerPrendaFragment : Fragment() {
 
     lateinit var binding: FragmentVerPrendaBinding

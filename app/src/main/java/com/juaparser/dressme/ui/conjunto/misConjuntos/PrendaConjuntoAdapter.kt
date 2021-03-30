@@ -11,6 +11,11 @@ import androidx.core.graphics.drawable.DrawableCompat
 import com.juaparser.dressme.R
 import com.juaparser.dressme.database.Prenda
 
+/*
+*
+* Adaptador para mostrar para cada conjunto que categorias superiores de prenda contiene
+*
+ */
 
 class PrendaConjuntoAdapter(var ctx: Context, private val values: MutableList<Prenda>)
     : RecyclerView.Adapter<PrendaConjuntoAdapter.ViewHolder>() {

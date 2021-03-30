@@ -3,6 +3,12 @@ package com.juaparser.dressme.database
 import androidx.room.*
 import com.juaparser.dressme.database.Conjunto
 
+/*
+*
+* Clase DAO que contiene las operaciones para la entidad Conjunto
+*
+ */
+
 @Dao
 interface ConjuntoDao {
     @Query("SELECT * FROM conjunto")

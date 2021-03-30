@@ -43,8 +43,12 @@
                     <!-- Title, secondary and supporting text -->
                     <TextView
                         android:id="@+id/item_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMinTextSize="12sp"
+                        app:autoSizeMaxTextSize="20sp"
+                        app:autoSizeStepGranularity="2sp"
                         tools:text="Prueba texto"
                         android:textAppearance="?attr/textAppearanceHeadline6" />
 

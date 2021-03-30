@@ -19,6 +19,11 @@ import com.juaparser.dressme.DressMeApp
 import com.juaparser.dressme.R
 import com.juaparser.dressme.databinding.FragmentArmarioBinding
 
+/*
+*
+* Fragmento para mostrar las prendas del usuario por categorías
+*
+ */
 
 class ArmarioFragment : Fragment() {
 

@@ -13,6 +13,11 @@ import com.juaparser.dressme.database.enums.Tiempo
 import com.juaparser.dressme.database.enums.TopCategoria
 import com.juaparser.dressme.databinding.FragmentCheckboxBinding
 
+/*
+*
+* Fragmento contenedor de la lista de checkbox para los filtros
+*
+ */
 
 class CheckboxFragment : Fragment() {
 

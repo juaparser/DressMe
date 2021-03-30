@@ -14,6 +14,11 @@ import com.juaparser.dressme.databinding.FragmentVerConjuntoBinding
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
+/*
+*
+* Fragmento para ver más detalles de un conjunto
+*
+ */
 
 class VerConjuntoFragment : Fragment() {
 

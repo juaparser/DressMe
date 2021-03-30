@@ -12,6 +12,11 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.juaparser.dressme.R
 
+/*
+*
+* Adaptador 
+* 
+ */
 
 class ColorAdapter(context: Context, list: Array<com.juaparser.dressme.database.enums.Color>) :ArrayAdapter<com.juaparser.dressme.database.enums.Color>(
     context,

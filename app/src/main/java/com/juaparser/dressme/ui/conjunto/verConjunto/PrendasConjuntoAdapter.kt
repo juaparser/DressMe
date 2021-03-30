@@ -15,6 +15,11 @@ import com.juaparser.dressme.database.Prenda
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
+/*
+*
+* Adaptador para mostrar las prendas asociadas al conjunto
+*
+ */
 
 class PrendasConjuntoAdapter(var ctx: Context, var conjuntoId: Long, private val values: MutableList<Prenda>)
     : RecyclerView.Adapter<PrendasConjuntoAdapter.ViewHolder>() {

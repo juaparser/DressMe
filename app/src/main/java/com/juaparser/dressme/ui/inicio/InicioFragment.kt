@@ -15,6 +15,12 @@ import com.juaparser.dressme.databinding.FragmentInicioBinding
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
+/*
+*
+* Fragmento para la vista de inicio
+*
+ */
+
 class InicioFragment : Fragment() {
 
     private lateinit var binding: FragmentInicioBinding

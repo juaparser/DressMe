@@ -9,6 +9,11 @@ import com.juaparser.dressme.database.enums.Color
 import com.juaparser.dressme.database.enums.Tiempo
 import com.juaparser.dressme.database.enums.TopCategoria
 
+/*
+*
+* Adaptador para mostrar la lista de checkbox según enumerado
+*
+ */
 
 class CheckboxAdapter(
         private val categories: Array<TopCategoria>?,

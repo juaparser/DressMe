@@ -5,6 +5,12 @@ import com.juaparser.dressme.database.enums.Color
 import com.juaparser.dressme.database.enums.Tiempo
 import com.juaparser.dressme.database.enums.TopCategoria
 
+/*
+*
+* Clase DAO que contiene las operaciones para la entidad Prenda
+*
+ */
+
 @Dao
 interface PrendaDao {
     @Query("SELECT * FROM prenda")

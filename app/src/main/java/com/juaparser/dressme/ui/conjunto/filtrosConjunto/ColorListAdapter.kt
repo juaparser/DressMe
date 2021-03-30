@@ -10,6 +10,11 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.juaparser.dressme.R
 
+/*
+*
+* Adaptador para mostrar los filtros elegidos en la vista
+*
+ */
 
 class ColorListAdapter(var ctx: Context, private val values: MutableList<String>, var type: Int)
     : RecyclerView.Adapter<ColorListAdapter.ViewHolder>() {

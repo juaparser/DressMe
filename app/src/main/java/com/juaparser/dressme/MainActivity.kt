@@ -22,6 +22,14 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.juaparser.dressme.database.DressMeDatabase
 
+/*
+*
+* Actividad principal de la aplicación, iniciada después de finalizar el tutorial.
+*
+* Se inicia el menú lateral así como el resto de componentes.
+*
+ */
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration

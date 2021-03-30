@@ -5,6 +5,12 @@ import androidx.room.TypeConverter
 import com.juaparser.dressme.database.enums.*
 import java.util.*
 
+/*
+*
+* Convertidores para los tipos de datos en la base de datos
+*
+ */
+
 class Converters {
 
     @TypeConverter

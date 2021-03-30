@@ -2,9 +2,11 @@ package com.juaparser.dressme.ui.prenda.armario
 
 import android.content.Context
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.*
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.navigation.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -16,6 +18,11 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.util.*
 
+/*
+*
+* Adaptador para mostrar las prendas por categoría
+*
+ */
 
 class ListAdapter(var ctx: Context, private val values: MutableList<Prenda>)
     : RecyclerView.Adapter<ListAdapter.ViewHolder>() {

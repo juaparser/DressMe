@@ -11,6 +11,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.juaparser.dressme.databinding.FragmentInfoBinding
 
+/*
+*
+* Fragmento para mostrar más información de la aplicación
+*
+ */
 
 class InfoFragment : Fragment() {
 

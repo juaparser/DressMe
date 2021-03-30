@@ -13,6 +13,11 @@ import com.juaparser.dressme.databinding.FragmentMisConjuntosBinding
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
+/*
+*
+* Fragmento para mostrar los conjuntos del usuario
+*
+ */
 
 class MisConjuntosFragment : Fragment() {
 

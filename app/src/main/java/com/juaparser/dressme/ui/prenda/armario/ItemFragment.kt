@@ -20,6 +20,12 @@ import com.juaparser.dressme.database.enums.Superior
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
+/*
+*
+* Fragmento para gestionar las vistas del ViewPager por categoría
+*
+ */
+
 class ItemFragment(var i: Int) : Fragment() {
 
     private var columnCount = 2

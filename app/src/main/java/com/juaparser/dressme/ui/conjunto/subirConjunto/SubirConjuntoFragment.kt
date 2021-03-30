@@ -22,6 +22,12 @@ import com.juaparser.dressme.databinding.FragmentSubirConjuntoBinding
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
+/*
+*
+* Fragmento para el formulario y subida de un conjunto
+*
+ */
+
 class SubirConjuntoFragment : Fragment() {
 
     private lateinit var binding: FragmentSubirConjuntoBinding

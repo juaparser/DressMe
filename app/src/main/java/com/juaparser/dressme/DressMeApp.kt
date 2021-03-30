@@ -6,6 +6,15 @@ import androidx.room.Room
 import com.juaparser.dressme.database.DressMeDatabase
 import com.juaparser.dressme.database.Prenda
 
+/*
+*
+* Clase aplicación la cual se inicia al abrir la aplicación.
+*
+* Almacena el iniciador de la base de datos, así como una serie de campos
+* utilizado para datos temporales entre fragmentos.
+*
+ */
+
 class DressMeApp: Application() {
 
     companion object {

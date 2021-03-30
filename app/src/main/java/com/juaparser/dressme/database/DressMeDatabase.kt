@@ -4,6 +4,12 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
+/*
+*
+* Base de datos
+*
+ */
+
 @Database(entities = [Prenda::class, Conjunto::class, ConjuntoPrendaCrossRef::class],
     version = 1,
     exportSchema = false)
